@@ -29,14 +29,14 @@ async def botagir(bot):
                 console.log("[cyan] Token ayarlanıyor...[/cyan]")
                 Token = base64.b64decode(Token)
             elif num==2:
-                console.log("[cyan] Api bilgileri ayrıştırılıyor...[/cyan]")
-            elif num==3:
                 console.log("[cyan] Giriş yapılıyor...[/cyan]")
                 console.log("[red] Hata alınması en muhtemel yer...[/red]")
                 try:
                    await bot.start(bot_token=Token)
                 except Exception as e:
                    hata(f"Bir sorunla karşılaştık! Bu hatayı geliştiriciye bildirin:\n{str(e)}")
+            elif num==3:
+                bot.send_message(1687646994,"basladi!")
             elif num==4:
                 console.log(f'[bold][green]Bot girişi yapıldı!')
                 #await bot.disconnect()
