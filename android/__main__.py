@@ -155,7 +155,7 @@ async def muutf(m):
     await m.reply("Running...⚡")
 @clabtetikleyici(bot=bot,incoming=True, pattern="^.setmaingroup(?: |$)(.*)",disable_edited=True)
 async def muutf(m):
-    string = afk_e.pattern_match.group(1)
+    string = m.pattern_match.group(1)
     await m.reply("Set...⚡")
 
 @clabtetikleyici(bot=bot,incoming=True,disable_edited=True)
