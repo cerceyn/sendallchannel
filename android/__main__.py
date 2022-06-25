@@ -49,7 +49,8 @@ async def botagir(bot, mainpath, channelpath):
                 except:
                     noadded('Mesaj gönderilememe hatası!')
             elif num==4:
-                console.log(f'[bold][green]Bot girişi yapıldı!')
+                console.log(f'[bold][green]✅ Bot girişi yapıldı!')
+                sleep(2)
                 #await bot.disconnect()
     return bot
 def setchannel(isp=0):
@@ -170,7 +171,7 @@ async def muutf(m):
     if m.chat_id==mainpath:
         basarili ("Main kanaldan mesaj!")
     else:
-        await m.reply("🌀")
+        await m.reply(f"🌀: {m.chat_id}")
 """
 @bot.on(bberc(incoming=True))
 async def handler(event):
