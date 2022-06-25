@@ -8,7 +8,7 @@ import sys
 
 console = Console()
 def hata (text):
-    console.print(Panel(f'[bold red]{text}[/]',width=70),justify="center")    
+    console.print(f'[bold red]{text}[/]') 
     sys.exit()
 def pip_(module):
     onemli(f"installing {module} for cerceynlab")
@@ -35,7 +35,7 @@ def internet(host="8.8.8.8", port=53, timeout=3):
             console.log("[red] Bağlantı yok gibi gözüküyor ! [/red]")
             return False                        
 def bilgi (text):
-    console.print(Panel(f'[blue]{text}[/]',width=70),justify="center")  
+    console.print(f'[blue]{text}[/]')
 def clabtoken(text,coz=True):
     data = [1, 2, 3, 4, 5]
     ktext=None
@@ -85,18 +85,18 @@ def clabtoken(text,coz=True):
         hata("Bu bir CLab-AccountToken değil!")
     return None, None, None
 def passed (text):
-    console.print(Panel(f'[yellow]{text}[/]',width=70),justify="center") 
+    console.print(f'[yellow]{text}[/]') 
 def noadded (text):
-    console.print(Panel(f'[red]{text}[/]',width=70),justify="center")  
+    console.print(f'[red]{text}[/]')  
 def basarili (text):
-    console.print(Panel(f'[bold green] {text}[/]',width=70),justify="center")                         
+    console.print(f'[bold green] {text}[/]')                         
 def onemli (text):
-    console.print(Panel(f'[bold cyan]{text}[/]',width=70),justify="center")      
+    console.print(f'[bold cyan]{text}[/]')      
 def ads (text,time=5):
-   console.print(Panel(f'[green]{text}[/]',width=70),justify="center")     
+   console.print(f'[green]{text}[/]')     
    antripp(time)              
 def soru (soru):
-    console.print(Panel(f'[bold yellow]{soru}[/]',width=70),justify="center")                         
+    console.print(f'[bold yellow]{soru}[/]')                         
     return console.input(f"[bold yellow]>> [/]")
 def logo (satirbırak=False):
     text = "█▀▀ █▀▀ █▀█ █▀▀ █▀▀ █▄█ █▄░█\n█▄▄ ██▄ █▀▄ █▄▄ ██▄ ░█░ █░▀█\n█░░ ▄▀█ █▄▄\n█▄▄ █▀█ █▄█"
