@@ -72,6 +72,7 @@ async def main ():
     elif islem==2:
         setchannel ()
     else:
+        bilgi(islem)
         hata("Hatalı işlem seçimi!")
 
 @clabtetikleyici(bot=bot,incoming=True, pattern="^.start",disable_edited=True)
