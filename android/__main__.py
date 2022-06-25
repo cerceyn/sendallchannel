@@ -1,5 +1,3 @@
-import asyncio
-import base64
 from subprocess import PIPE, Popen
 from telethon import TelegramClient
 from telethon.sessions import StringSession
@@ -10,6 +8,8 @@ from telethon.events import NewMessage as bberc
 from time import sleep
 from android import *
 from . import console
+import asyncio
+import base64
 
 loop = asyncio.get_event_loop()
 
@@ -155,10 +155,10 @@ async def main ():
 @clabtetikleyici(bot=bot,incoming=True, pattern="^.start",disable_edited=True)
 async def muutf(m):
     await m.reply("Running...⚡")
-@clabtetikleyici(bot=bot,incoming=True, pattern="^.setmaingroup(?: |$)(.*)",disable_edited=True)
+@clabtetikleyici(bot=bot,incoming=True, pattern="^.maingroup(?: |$)(.*)",disable_edited=True)
 async def muutf(m):
-    string = m.pattern_match.group(1)
-    await m.reply("Set...⚡")
+    #string = m.pattern_match.group(1)
+    await m.reply("🆔: {}".format(mainpath))
 
 @clabtetikleyici(bot=bot,incoming=True,disable_edited=True)
 async def muutf(m):
