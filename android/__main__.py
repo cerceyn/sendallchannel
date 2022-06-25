@@ -47,7 +47,7 @@ async def main ():
     global bot
     await botagir(bot)
 
-    @clabtetikleyici(incoming=True, pattern="^.start",disable_edited=True)
+    @clabtetikleyici(bot=bot,incoming=True, pattern="^.start",disable_edited=True)
     async def muutf(m):
         await m.reply("test")
 
