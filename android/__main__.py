@@ -20,7 +20,7 @@ async def botagir(bot):
     with console.status("[bold blue] Bota girme işlemi sürüyor...") as status:
         while data:
             num = data.pop(0)
-            sleep(2)
+            sleep(.5)
             if num==1:
                 console.log("[cyan] Token ayarlanıyor...[/cyan]")
                 Token = base64.b64decode(Token)
@@ -40,12 +40,13 @@ async def botagir(bot):
             elif num==4:
                 console.log(f'[bold][green]Bot girişi yapıldı!')
                 #await bot.disconnect()
+    return bot
 
 async def main ():
     logo(True)
     n()
     global bot
-    await botagir(bot)
+    bot = await botagir(bot)
 
     @clabtetikleyici(bot=bot,incoming=True, pattern="^.start",disable_edited=True)
     async def muutf(m):
