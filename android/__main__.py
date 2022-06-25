@@ -103,7 +103,9 @@ def setchannel(isp=0):
 def getchannel (isp=0):
     import os
     sep = os.sep
-    os.chdir(os.pardir)
+    li = os.getcwd().split(sep)
+    if not "home" in li: #termux
+        os.chdir(os.pardir)
     li = os.getcwd().split(sep)
     if li:
         print(li)
