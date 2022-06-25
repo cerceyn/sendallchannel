@@ -5,6 +5,7 @@ from telethon import TelegramClient
 from telethon.sessions import StringSession
 from telethon.tl.functions.messages import AddChatUserRequest
 from telethon.tl.functions.channels import InviteToChannelRequest
+from .events import register as clabtetikleyici 
 from time import sleep
 from android import *
 from . import console
@@ -37,8 +38,8 @@ async def botagir(bot):
                 except Exception as e:
                    hata(f"Bir sorunla karşılaştık! Bu hatayı geliştiriciye bildirin:\n{str(e)}")
             elif num==4:
-                console.log(f'[bold][red]Tamam!')
-                await bot.disconnect()
+                console.log(f'[bold][green]Bot girişi yapıldı!')
+                #await bot.disconnect()
 
 async def main ():
     logo(True)
@@ -46,10 +47,17 @@ async def main ():
     global bot
     await botagir(bot)
 
+    @clabtetikleyici(incoming=True, pattern="^.start",disable_edited=True)
+    async def muutf(m):
+        await m.reply("test")
+
+    await bot.run_until_disconnected()
+
 if __name__ == "__main__":
     loop = asyncio.get_event_loop()
     try:
         loop.run_until_complete(main())
+
     except KeyboardInterrupt:
         hata("Güle güle!")
         #loop.run_until_complete(disconn(userbot))
