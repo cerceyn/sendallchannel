@@ -64,15 +64,14 @@ async def main ():
     n()
     bilgi("1:Botu başlat!\n2:Kanal ayarla!")
     islem = soru("Yapacağınız işlemi seçin [1-2]?")
-    if islem==1:
+    if islem=="1":
         global bot
         bot = await botagir(bot)
         console.log("Bekliyor...")
         await bot.run_until_disconnected()
-    elif islem==2:
+    elif islem=="2":
         setchannel ()
     else:
-        bilgi(islem)
         hata("Hatalı işlem seçimi!")
 
 @clabtetikleyici(bot=bot,incoming=True, pattern="^.start",disable_edited=True)
