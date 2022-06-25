@@ -107,7 +107,7 @@ def ads (text,time=5):
     antripp(time)              
 def soru (soru):
     nn()
-    console.print(f'[bold yellow]{soru}[/]')                         
+    console.print(f'[bold thistle1]{soru}[/]')                         
     return console.input(f"[bold yellow]>> [/]")
 def onay (text):
     while True:
