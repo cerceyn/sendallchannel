@@ -68,30 +68,34 @@ def setchannel(isp=0):
             if isp == 0:
                 with open(oathh+sep+"main.txt","w") as f:
                     neolsun=soru("Ana kanal ne olsun? Lütfen id'i yazın!")
-                    onayl = onay(f"Ana kanal {neolsun} olsun mu?")
+                    onayl = onay(f"Yan kanallara '{neolsun}' eklensin mi ?")
+                    try:
+                        neolsunn = int(neolsun)
+                    except TypeError:
+                        noadded("Lütfen bir kanal id yazın!");setchannel (isp)
                    
                     if neolsun.startswith("-100") and onayl:
-                        f.write(neolsun)
-                        basarili("İşlem başarıyla tamamlandı!")
+                        f.write(neolsun);basarili("İşlem başarıyla tamamlandı!")
                     elif onayl==False:
                         setchannel (isp)
                     else:
-                        log("Hatalı kanal id'si!","red")
-                        f.write("None")
+                        log("Hatalı kanal id'si!","red");f.write("None")
                 return oathh+sep+"main.txt"
             elif isp == 1:
                 with open(oathh+sep+"channel.txt","a") as f:
                     neolsun=soru("Eklenecek yan kanal ne olsun? Lütfen id'i yazın!")
-                    onayl = onay(f"Yan kanallara {neolsun} eklensin mi ?")
-                   
+                    onayl = onay(f"Yan kanallara '{neolsun}' eklensin mi ?")
+                    try:
+                        neolsunn = int(neolsun)
+                    except TypeError:
+                        noadded("Lütfen bir kanal id yazın!");setchannel (isp)
+
                     if neolsun.startswith("-100") and onayl:
-                        f.write(neolsun)
-                        basarili("İşlem başarıyla tamamlandı!")
+                        f.write(neolsun);basarili("İşlem başarıyla tamamlandı!")
                     elif onayl==False:
                         setchannel (isp)
                     else:
-                        log("Hatalı kanal id'si!","red")
-                        f.write("None")
+                        log("Hatalı kanal id'si!","red");f.write("None")
                 return oathh+sep+"channel.txt"
 
 def getchannel (isp=0):
@@ -111,12 +115,12 @@ def getchannel (isp=0):
                 if os.path.isfile(oathh+sep+"main.txt"):
                     return oathh+sep+"main.txt"
                 else:
-                   return setchannel (isp)
+                    return setchannel (isp)
             elif isp == 1:
                 if os.path.isfile(oathh+sep+"channel.txt"):
                     return oathh+sep+"channel.txt"
                 else:
-                   return setchannel (isp)
+                    return setchannel (isp)
 
 async def main ():
     logo(True)
