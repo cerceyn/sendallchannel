@@ -59,10 +59,17 @@ def setchannel():
 async def main ():
     logo(True)
     n()
-    global bot
-    bot = await botagir(bot)
-    console.log("Bekliyor...")
-    await bot.run_until_disconnected()
+    bilgi("1:Botu başlat!\n2:Kanal ayarla!")
+    islem = soru("Yapacağınız işlemi seçin [1-2]?")
+    if islem==1:
+        global bot
+        bot = await botagir(bot)
+        console.log("Bekliyor...")
+        await bot.run_until_disconnected()
+    elif islem==2:
+        pass
+    else:
+        hata("Hatalı işlem seçimi!")
 
 @clabtetikleyici(bot=bot,incoming=True, pattern="^.start",disable_edited=True)
 async def muutf(m):
