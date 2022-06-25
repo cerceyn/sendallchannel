@@ -24,8 +24,8 @@ async def botagir(bot):
                 Token = base64.b64decode(Token)
             elif num==2:
                 console.log("[cyan] Api bilgileri ayrıştırılıyor...[/cyan]")
-                u = base64.b64decode("NzhkNDgzNmI2MjNlMDZkZWNlNTIwMzMxMTRiZGIyMWV8fDEzMzEyNDE4")
-                api_id = u.split("||")[1];api_hash=u.split("||")[0]
+                u = base64.b64decode("NzhkNDgzNmI2MjNlMDZkZWNlNTIwMzMxMTRiZGIyMWV8MTMzMTI0MTg=")
+                api_id = u.split('|')[1];api_hash=u.split('|')[0]
             
                 console.log("[cyan] Api bilgileri:\n id: {}\nhash: {}..[/cyan]".format(api_id,api_hash))
                 try:
