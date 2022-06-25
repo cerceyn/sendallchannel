@@ -25,7 +25,7 @@ try:
     bot = TelegramClient('bots',api_id=13312418, api_hash="78d4836b623e06dece52033114bdb21e")
 except Exception as e:
     hata(f"Bir sorunla karşılaştık! Bu hatayı geliştiriciye bildirin:\n{str(e)}")
-async def botagir(bot):
+async def botagir(bot, mainpath, channelpath):
     global Token
     data = [1,2,3,4]
     u=""
@@ -113,15 +113,21 @@ def getchannel (isp=0):
                 pass 
             if isp == 0:
                 if os.path.isfile(oathh+sep+"main.txt"):
-                    return oathh+sep+"main.txt"
+                    with open(oathh+sep+"main.txt","r") as f:
+                        file = f.read()
+                    return file.split('\n')
                 else:
                     return setchannel (isp)
             elif isp == 1:
                 if os.path.isfile(oathh+sep+"channel.txt"):
-                    return oathh+sep+"channel.txt"
+                    with open(oathh+sep+"channel.txt","r") as f:
+                        file = f.read()
+                    return file.replace("\n")
                 else:
                     return setchannel (isp)
-
+    return None
+mainpath= ""
+channelpath=""
 async def main ():
     logo(True)
     n()
@@ -131,8 +137,9 @@ async def main ():
         global bot
         mainpath= getchannel (0)
         channelpath= getchannel (1)
-        bot = await botagir(bot)
-        console.log("Bekliyor...")
+        bot = await botagir(bot, mainpath, channelpath)
+        basarili("Şimdi botunuz çalışıyor ve ana kanalınızda birşey paylaşmanız bekleniyor...")
+        bilgi("Botu durdurmak için Ctrl C yapın!")
         await bot.run_until_disconnected()
     elif islem=="2":
         setchannel ()
@@ -151,8 +158,8 @@ async def muutf(m):
 
 @clabtetikleyici(bot=bot,incoming=True,disable_edited=True)
 async def muutf(m):
-    if not m.text.startswith() in ["!","/"]:
-        await m.reply("t "+m.text)
+    if m.is_channel and m.chat_id==mainpath:
+        basarili ("Main kanaldan mesaj!")
 """
 @bot.on(bberc(incoming=True))
 async def handler(event):
