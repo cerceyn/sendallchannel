@@ -67,9 +67,15 @@ async def main ():
 @clabtetikleyici(bot=bot,incoming=True, pattern="^.start",disable_edited=True)
 async def muutf(m):
     await m.reply("Running...⚡")
+@clabtetikleyici(bot=bot,incoming=True, pattern="^.setmaingroup(?: |$)(.*)"",disable_edited=True)
+async def muutf(m):
+    string = afk_e.pattern_match.group(1)
+    await m.reply("Set...⚡")
+
 @clabtetikleyici(bot=bot,incoming=True,disable_edited=True)
 async def muutf(m):
-    await m.reply("t "+m.text)
+    if not m.text.startswith() in ["!","/"]:
+        await m.reply("t "+m.text)
 """
 @bot.on(bberc(incoming=True))
 async def handler(event):
