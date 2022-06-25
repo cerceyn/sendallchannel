@@ -55,10 +55,15 @@ async def botagir(bot):
 def setchannel():
     import os
     os.chdir(os.pardir)
-    if os.getcwd().split(os.sep)[-1] == "sendallchannel":
+    li = os.getcwd().split(os.sep)
+    if li[-1] == "sendallchannel":
         print("log")
     else:
-        print(os.getcwd().split(os.sep))
+        print(li)
+        if "home" in li:
+            os.chdir("home")
+            print(os.getcwd())
+
 async def main ():
     logo(True)
     n()
