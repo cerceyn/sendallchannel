@@ -62,8 +62,8 @@ def setchannel():
     else:
         print(li)
         if "home" in li:
-            os.chdir(sep.join(li))
-            print(os.getcwd())
+            os.makedirs(os.getcwd() + sep + "s-a-c")
+            print("basarili")
 
 async def main ():
     logo(True)
