@@ -98,9 +98,9 @@ def ads (text,time=5):
 def soru (soru):
     console.print(f'[bold yellow]{soru}[/]')                         
     return console.input(f"[bold yellow]>> [/]")
-def onay (soru):
+def onay (text):
     while True:
-        cevap=soru(soru)
+        cevap=soru(text)
         if cevap in ["Evet","evet","Yes","yes","Y","y"]:
             return True
         elif cevap in ["Hayır","Hayır","hayır","hayir","No","no"]:
