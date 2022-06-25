@@ -62,7 +62,7 @@ def setchannel():
     else:
         print(li)
         if "home" in li:
-            os.chdir("home{}".format(sep))
+            os.chdir(sep.join(li))
             print(os.getcwd())
 
 async def main ():
