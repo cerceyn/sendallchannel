@@ -59,7 +59,6 @@ def setchannel(isp=0):
     bilgi(li[-1])
     if "home" in li and not li[-1] == "home": #termux
         os.chdir(os.pardir)
-    bilgi(li[-1])
     li = os.getcwd().split(sep)
     if li:
         print(li)
@@ -72,7 +71,7 @@ def setchannel(isp=0):
             if isp == 0:
                 with open(oathh+sep+"main.txt","w") as f:
                     neolsun=soru("Ana kanal ne olsun? Lütfen id'i yazın!")
-                    onayl = onay(f"Yan kanallara '{neolsun}' eklensin mi ?")
+                    onayl = onay(f"Ana kanal '{neolsun}' olsun mu ?")
                     try:
                         neolsunn = int(neolsun)
                     except TypeError:
