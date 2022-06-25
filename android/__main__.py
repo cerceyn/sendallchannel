@@ -52,7 +52,7 @@ async def botagir(bot):
                 console.log(f'[bold][green]Bot girişi yapıldı!')
                 #await bot.disconnect()
     return bot
-def setchannel():
+def setchannel(is=0):
     import os
     sep = os.sep
     os.chdir(os.pardir)
@@ -65,26 +65,75 @@ def setchannel():
                 os.makedirs(oathh)
             except FileExistsError:
                 pass
-            with open(oathh+sep+"main.txt","w") as f:
-                neolsun=soru("Ana kanal ne olsun? Lütfen id'i yazın!")
-                if neolsun.startswith("-100"):
-                    f.write(neolsun)
+            if is == 0:
+                with open(oathh+sep+"main.txt","w") as f:
+                    neolsun=soru("Ana kanal ne olsun? Lütfen id'i yazın!")
+                    onayl = onay(f"Ana kanal {neolsun} olsun mu?")
+                   
+                    if neolsun.startswith("-100") and onayl:
+                        f.write(neolsun)
+                        basarili("İşlem başarıyla tamamlandı!")
+                    elif onayl==False:
+                        setchannel (is)
+                    else:
+                        log("Hatalı kanal id'si!","red")
+                        f.write("None")
+                return oathh+sep+"main.txt"
+            elif is == 1:
+                with open(oathh+sep+"channel.txt","w") as f:
+                    neolsun=soru("Eklenecek yan kanal ne olsun? Lütfen id'i yazın!")
+                    onayl = onay(f"Yan kanallara {neolsun} eklensin mi ?")
+                   
+                    if neolsun.startswith("-100") and onayl:
+                        f.write(neolsun)
+                        basarili("İşlem başarıyla tamamlandı!")
+                    elif onayl==False:
+                        setchannel (is)
+                    else:
+                        log("Hatalı kanal id'si!","red")
+                        f.write("None")
+                return oathh+sep+"channel.txt"
+
+def getchannel (is=0):
+    import os
+    sep = os.sep
+    os.chdir(os.pardir)
+    li = os.getcwd().split(sep)
+    if li:
+        print(li)
+        if "home" in li: #termux
+            oathh=os.getcwd() + sep + "s-a-c"
+            try:
+                os.makedirs(oathh)
+            except FileExistsError:
+                pass 
+            if is == 0:
+                if os.path.isfile(oathh+sep+"main.txt"):
+                    return oathh+sep+"main.txt"
                 else:
-                    log("Hatalı kanal id'si!","red")
-                    f.write("None")
+                   setchannel (is)
+            elif is == 1:
+                if os.path.isfile(oathh+sep+"channel.txt"):
+                    return oathh+sep+"channel.txt"
+                else:
+                   setchannel (is)
 
 async def main ():
     logo(True)
     n()
-    bilgi("1:Botu başlat!\n2:Kanal ayarla!")
-    islem = soru("Yapacağınız işlemi seçin [1-2]?")
+    bilgi("1:Botu başlat!\n2:Ana Kanal Ayarla veya Değiştir!\n3:Yan Kanal Ekle!")
+    islem = soru("Yapacağınız işlemi seçin [1-2-3]?")
     if islem=="1":
         global bot
+        mainpath= getchannel (0)
+        channelpath= getchannel (1)
         bot = await botagir(bot)
         console.log("Bekliyor...")
         await bot.run_until_disconnected()
     elif islem=="2":
         setchannel ()
+    elif islem=="3":
+        setchannel (1)
     else:
         hata("Hatalı işlem seçimi!")
 
