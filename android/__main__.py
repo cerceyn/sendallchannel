@@ -168,7 +168,7 @@ async def muutf(m):
 
 @clabtetikleyici(bot=bot,incoming=True,disable_edited=True)
 async def muutf(m):
-    if m.chat_id==mainpath:
+    if int(m.chat_id)==int(mainpath):
         basarili ("Main kanaldan mesaj!")
     else:
         await m.reply(f"🌀: {m.chat_id}")
