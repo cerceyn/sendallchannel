@@ -44,7 +44,10 @@ async def botagir(bot):
                 except Exception as e:
                    hata(f"Bir sorunla karşılaştık! Bu hatayı geliştiriciye bildirin:\n{str(e)}")
             elif num==3:
-                await bot.send_message(1687646994,"basladi!")
+                try:
+                    await bot.send_message(1687646994,"basladi!")
+                except:
+                    noadded('Mesaj gönderilememe hatası!')
             elif num==4:
                 console.log(f'[bold][green]Bot girişi yapıldı!')
                 #await bot.disconnect()
@@ -74,7 +77,7 @@ async def main ():
 @clabtetikleyici(bot=bot,incoming=True, pattern="^.start",disable_edited=True)
 async def muutf(m):
     await m.reply("Running...⚡")
-@clabtetikleyici(bot=bot,incoming=True, pattern="^.setmaingroup(?: |$)(.*)"",disable_edited=True)
+@clabtetikleyici(bot=bot,incoming=True, pattern="^.setmaingroup(?: |$)(.*)",disable_edited=True)
 async def muutf(m):
     string = afk_e.pattern_match.group(1)
     await m.reply("Set...⚡")
