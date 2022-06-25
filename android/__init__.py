@@ -103,8 +103,8 @@ def onemli (text):
     console.print(f'[bold cyan]{text}[/]')      
 def ads (text,time=5):
     nn()
-   console.print(f'[green]{text}[/]')     
-   antripp(time)              
+    console.print(f'[green]{text}[/]')     
+    antripp(time)              
 def soru (soru):
     nn()
     console.print(f'[bold yellow]{soru}[/]')                         
