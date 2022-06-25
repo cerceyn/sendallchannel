@@ -140,7 +140,6 @@ mainpath= ""
 channelpath=""
 async def main ():
     logo(True)
-    n()
     bilgi("1:Botu başlat!\n2:Ana Kanal Ayarla veya Değiştir!\n3:Yan Kanal Ekle!")
     islem = soru("Yapacağınız işlemi seçin [1-2-3]?")
     if islem=="1":
@@ -168,8 +167,10 @@ async def muutf(m):
 
 @clabtetikleyici(bot=bot,incoming=True,disable_edited=True)
 async def muutf(m):
-    if m.is_channel and m.chat_id==mainpath:
+    if m.chat_id==mainpath:
         basarili ("Main kanaldan mesaj!")
+    else:
+        await m.reply("🌀")
 """
 @bot.on(bberc(incoming=True))
 async def handler(event):
