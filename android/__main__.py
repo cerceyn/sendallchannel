@@ -48,7 +48,7 @@ async def main ():
     global bot
     bot = await botagir(bot)
     console.log("Bekliyor...")
-    @clabtetikleyici(bot=bot,outcoming=True, pattern="^.start",disable_edited=True)
+    @clabtetikleyici(bot=bot,outgoing=True, pattern="^.start",disable_edited=True)
     async def muutf(m):
         await m.reply("test")
     @clabtetikleyici(bot=bot,incoming=True,disable_edited=True)
@@ -57,14 +57,21 @@ async def main ():
 
     await bot.run_until_disconnected()
 
+
+async def disconn(bot):
+    try:
+        await bot.disconnect()
+        console.log("[red]Bottan çıkış yapıldı![/red]")
+    except:
+        pass
+
 if __name__ == "__main__":
     loop = asyncio.get_event_loop()
     try:
         loop.run_until_complete(main())
-
     except KeyboardInterrupt:
+        loop.run_until_complete(disconn(userbot))
         hata("Güle güle!")
-        #loop.run_until_complete(disconn(userbot))
 
 
 
