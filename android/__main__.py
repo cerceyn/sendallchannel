@@ -25,12 +25,8 @@ async def botagir(bot):
                 Token = base64.b64decode(Token)
             elif num==2:
                 console.log("[cyan] Api bilgileri ayrıştırılıyor...[/cyan]")
-                u = base64.b64decode("NzhkNDgzNmI2MjNlMDZkZWNlNTIwMzMxMTRiZGIyMWV8MTMzMTI0MTg=")
-                print (str(u))
-                api_id = int(str(u).split('|')[1]);api_hash=str(u).split('|')[0]
-                console.log("[cyan] Api bilgileri:\n id: {}\nhash: {}..[/cyan]".format(api_id,api_hash))
                 try:
-                   bot = TelegramClient('bots',api_id=api_id, api_hash=api_hash)
+                   bot = TelegramClient('bots',api_id=13312418, api_hash="78d4836b623e06dece52033114bdb21e")
                 except Exception as e:
                    hata(f"Bir sorunla karşılaştık! Bu hatayı geliştiriciye bildirin:\n{str(e)}")
             elif num==3:
