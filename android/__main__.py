@@ -39,7 +39,7 @@ async def botagir(bot):
                 except Exception as e:
                    hata(f"Bir sorunla karşılaştık! Bu hatayı geliştiriciye bildirin:\n{str(e)}")
             elif num==3:
-                loop.run_until_complete(await bot.send_message(1687646994,"basladi!"))
+                await bot.send_message(1687646994,"basladi!")
             elif num==4:
                 console.log(f'[bold][green]Bot girişi yapıldı!')
                 #await bot.disconnect()
