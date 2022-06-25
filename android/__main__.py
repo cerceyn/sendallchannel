@@ -52,7 +52,7 @@ async def botagir(bot):
                 console.log(f'[bold][green]Bot girişi yapıldı!')
                 #await bot.disconnect()
     return bot
-def setchannel(is=0):
+def setchannel(isp=0):
     import os
     sep = os.sep
     os.chdir(os.pardir)
@@ -65,7 +65,7 @@ def setchannel(is=0):
                 os.makedirs(oathh)
             except FileExistsError:
                 pass
-            if is == 0:
+            if isp == 0:
                 with open(oathh+sep+"main.txt","w") as f:
                     neolsun=soru("Ana kanal ne olsun? Lütfen id'i yazın!")
                     onayl = onay(f"Ana kanal {neolsun} olsun mu?")
@@ -74,12 +74,12 @@ def setchannel(is=0):
                         f.write(neolsun)
                         basarili("İşlem başarıyla tamamlandı!")
                     elif onayl==False:
-                        setchannel (is)
+                        setchannel (isp)
                     else:
                         log("Hatalı kanal id'si!","red")
                         f.write("None")
                 return oathh+sep+"main.txt"
-            elif is == 1:
+            elif isp == 1:
                 with open(oathh+sep+"channel.txt","w") as f:
                     neolsun=soru("Eklenecek yan kanal ne olsun? Lütfen id'i yazın!")
                     onayl = onay(f"Yan kanallara {neolsun} eklensin mi ?")
@@ -88,13 +88,13 @@ def setchannel(is=0):
                         f.write(neolsun)
                         basarili("İşlem başarıyla tamamlandı!")
                     elif onayl==False:
-                        setchannel (is)
+                        setchannel (isp)
                     else:
                         log("Hatalı kanal id'si!","red")
                         f.write("None")
                 return oathh+sep+"channel.txt"
 
-def getchannel (is=0):
+def getchannel (isp=0):
     import os
     sep = os.sep
     os.chdir(os.pardir)
@@ -107,16 +107,16 @@ def getchannel (is=0):
                 os.makedirs(oathh)
             except FileExistsError:
                 pass 
-            if is == 0:
+            if isp == 0:
                 if os.path.isfile(oathh+sep+"main.txt"):
                     return oathh+sep+"main.txt"
                 else:
-                   setchannel (is)
-            elif is == 1:
+                   return setchannel (isp)
+            elif isp == 1:
                 if os.path.isfile(oathh+sep+"channel.txt"):
                     return oathh+sep+"channel.txt"
                 else:
-                   setchannel (is)
+                   return setchannel (isp)
 
 async def main ():
     logo(True)
