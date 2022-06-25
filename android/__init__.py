@@ -98,6 +98,15 @@ def ads (text,time=5):
 def soru (soru):
     console.print(f'[bold yellow]{soru}[/]')                         
     return console.input(f"[bold yellow]>> [/]")
+def onay (soru):
+    while True:
+        cevap=soru(soru)
+        if cevap in ["Evet","evet","Yes","yes","Y","y"]:
+            return True
+        elif cevap in ["Hayır","Hayır","hayır","hayir","No","no"]:
+            return False
+        else:
+            noadded("Lütfen sadece evet-yes veya hayır-no diyin!")
 def logo (satirbırak=False):
     text = "█▀▀ █▀▀ █▀█ █▀▀ █▀▀ █▄█ █▄░█\n█▄▄ ██▄ █▀▄ █▄▄ ██▄ ░█░ █░▀█\n█░░ ▄▀█ █▄▄\n█▄▄ █▀█ █▄█"
     if satirbırak:
