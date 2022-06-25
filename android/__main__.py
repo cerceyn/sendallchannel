@@ -57,13 +57,18 @@ def setchannel():
     sep = os.sep
     os.chdir(os.pardir)
     li = os.getcwd().split(sep)
-    if li[-1] == "sendallchannel":
-        print("log")
-    else:
+    if li:
         print(li)
-        if "home" in li:
-            os.makedirs(os.getcwd() + sep + "s-a-c")
-            print("basarili")
+        if "home" in li: #termux
+            oathh=os.getcwd() + sep + "s-a-c"
+            os.makedirs(oathh)
+            with open(oathh+sep+"main.txt","w") as f:
+                neolsun=soru("Ana kanal ne olsun? Lütfen id'i yazın!")
+                if neolsun.startswith("-100"):
+                    f.write(neolsun)
+                else:
+                    log("Hatalı kanal id'si!","red")
+                    f.write("None")
 
 async def main ():
     logo(True)
