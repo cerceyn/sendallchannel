@@ -47,10 +47,13 @@ async def main ():
     n()
     global bot
     bot = await botagir(bot)
-
-    @clabtetikleyici(bot=bot,incoming=True, pattern="^.start",disable_edited=True)
+    console.log("Bekliyor...")
+    @clabtetikleyici(bot=bot,outcoming=True, pattern="^.start",disable_edited=True)
     async def muutf(m):
         await m.reply("test")
+    @clabtetikleyici(bot=bot,incoming=True,disable_edited=True)
+    async def muutf(m):
+        await m.reply(m.text)
 
     await bot.run_until_disconnected()
 
