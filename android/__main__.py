@@ -121,14 +121,18 @@ def getchannel (isp=0):
                 if os.path.isfile(oathh+sep+"main.txt"):
                     with open(oathh+sep+"main.txt","r") as f:
                         file = f.read()
-                    return file.split('\n')
+                    if not file.split('\n')[0].startswith("-100"):
+                        return setchannel (isp)
+                    return file.split('\n')[0]
                 else:
                     return setchannel (isp)
             elif isp == 1:
                 if os.path.isfile(oathh+sep+"channel.txt"):
                     with open(oathh+sep+"channel.txt","r") as f:
                         file = f.read()
-                    return file.replace("\n","")
+                    if not file.split('\n')[0].startswith("-100"):
+                        return setchannel (isp)
+                    return file.split('\n')
                 else:
                     return setchannel (isp)
     return None
