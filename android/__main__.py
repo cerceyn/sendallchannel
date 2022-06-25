@@ -15,7 +15,7 @@ loop = asyncio.get_event_loop()
 
 def n():
     console.print("\n")
-def log(text,renk=Bone):
+def log(text,renk=None):
     if renk:
         console.log(f"[{renk}]{text}[/{renk}]")
     else:
@@ -67,7 +67,7 @@ async def main ():
         console.log("Bekliyor...")
         await bot.run_until_disconnected()
     elif islem==2:
-        pass
+        setchannel ()
     else:
         hata("Hatalı işlem seçimi!")
 
