@@ -54,7 +54,9 @@ async def main ():
     @clabtetikleyici(bot=bot,incoming=True,disable_edited=True)
     async def muutf(m):
         await m.reply(m.text)
-
+    @bot.on(bberc(incoming=True))
+    async def handler(event):
+        await event.reply(event.text)
     await bot.run_until_disconnected()
 
 
@@ -70,7 +72,8 @@ if __name__ == "__main__":
     try:
         loop.run_until_complete(main())
     except KeyboardInterrupt:
-        loop.run_until_complete(disconn(userbot))
+        n()
+        loop.run_until_complete(disconn(bot))
         hata("Güle güle!")
 
 
