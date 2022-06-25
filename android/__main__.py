@@ -128,7 +128,7 @@ def getchannel (isp=0):
                 if os.path.isfile(oathh+sep+"channel.txt"):
                     with open(oathh+sep+"channel.txt","r") as f:
                         file = f.read()
-                    return file.replace("\n")
+                    return file.replace("\n","")
                 else:
                     return setchannel (isp)
     return None
