@@ -7,7 +7,10 @@ import os, shutil
 import sys
 
 console = Console()
+def nn():
+    console.print("\n\n")
 def hata (text):
+    nn()
     console.print(f'[bold red]{text}[/]') 
     sys.exit()
 def pip_(module):
@@ -35,11 +38,13 @@ def internet(host="8.8.8.8", port=53, timeout=3):
             console.log("[red] Bağlantı yok gibi gözüküyor ! [/red]")
             return False                        
 def bilgi (text):
+    nn()
     console.print(f'[blue]{text}[/]')
 def clabtoken(text,coz=True):
     data = [1, 2, 3, 4, 5]
     ktext=None
     key=None
+    nn()
     with console.status("[bold blue] Clabtoken İşlemi Sürüyor...") as status:
         while data:
             num = data.pop(0)
@@ -85,17 +90,23 @@ def clabtoken(text,coz=True):
         hata("Bu bir CLab-AccountToken değil!")
     return None, None, None
 def passed (text):
+    nn()
     console.print(f'[yellow]{text}[/]') 
 def noadded (text):
+    nn()
     console.print(f'[red]{text}[/]')  
 def basarili (text):
+    nn()
     console.print(f'[bold green] {text}[/]')                         
 def onemli (text):
+    nn()
     console.print(f'[bold cyan]{text}[/]')      
 def ads (text,time=5):
+    nn()
    console.print(f'[green]{text}[/]')     
    antripp(time)              
 def soru (soru):
+    nn()
     console.print(f'[bold yellow]{soru}[/]')                         
     return console.input(f"[bold yellow]>> [/]")
 def onay (text):
