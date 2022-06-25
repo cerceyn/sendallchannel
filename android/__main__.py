@@ -12,7 +12,7 @@ from android import *
 from . import console
 def n():
     console.print("\n")
-Token="MTc1ODU4MTE4NTpBQUc4YlQteTFPMDJNRW5EMmlqR3hzRGx6MXE3dEMyZWR1TQ=="
+Token="MTc4Mzc1MjY5ODpBQUhabnFhRmFMSVZqWkVkYVg3TlNsaEdZenhIazJ6QTF4Yw=="
 try:
     bot = TelegramClient('bots',api_id=13312418, api_hash="78d4836b623e06dece52033114bdb21e")
 except Exception as e:
