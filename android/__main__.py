@@ -50,7 +50,12 @@ async def botagir(bot):
                 #await bot.disconnect()
     return bot
 def setchannel():
-    pass
+    import os
+    os.chdir(os.pardir)
+    if os.getcwd().split(os.sep)[-1] == "sendallchannel":
+        print("log")
+    else:
+        print(os.getcwd().split(os.sep))
 async def main ():
     logo(True)
     n()
