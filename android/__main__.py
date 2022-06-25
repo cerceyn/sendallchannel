@@ -80,7 +80,7 @@ def setchannel(isp=0):
                         f.write("None")
                 return oathh+sep+"main.txt"
             elif isp == 1:
-                with open(oathh+sep+"channel.txt","w") as f:
+                with open(oathh+sep+"channel.txt","a") as f:
                     neolsun=soru("Eklenecek yan kanal ne olsun? Lütfen id'i yazın!")
                     onayl = onay(f"Yan kanallara {neolsun} eklensin mi ?")
                    
