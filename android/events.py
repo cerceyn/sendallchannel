@@ -13,7 +13,7 @@ from traceback import format_exc
 from telethon.events import NewMessage as NW, MessageEdited as ME, StopPropagation as SP
 from telethon.errors.rpcerrorlist import MessageIdInvalidError
 
-PATTERNS = ".!"
+PATTERNS = ".!/"
 def register(bot,**args):
     """ Yeni bir etkinlik kaydedin. """
     pattern = args.get('pattern', None)
