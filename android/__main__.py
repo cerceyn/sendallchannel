@@ -6,6 +6,7 @@ from telethon.sessions import StringSession
 from telethon.tl.functions.messages import AddChatUserRequest
 from telethon.tl.functions.channels import InviteToChannelRequest
 from .events import register as clabtetikleyici 
+from telethon.events import NewMessage as bberc
 from time import sleep
 from android import *
 from . import console
