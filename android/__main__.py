@@ -8,10 +8,12 @@ from telethon.tl.functions.channels import InviteToChannelRequest
 from time import sleep
 from android import *
 from . import console
-
+def n():
+    console.print("\n")
 Token="MTc1ODU4MTE4NTpBQUc4YlQteTFPMDJNRW5EMmlqR3hzRGx6MXE3dEMyZWR1TQ=="
 bot=None
-async def botagir():
+async def botagir(bot):
+    global Token
     data = [1,2,3,4]
     with console.status("[bold blue] Bota girme işlemi sürüyor...") as status:
         while data:
@@ -40,7 +42,9 @@ async def botagir():
 
 async def main ():
     logo(True)
-    await botagir()
+    n()
+    global bot
+    await botagir(bot)
 
 if __name__ == "__main__":
     loop = asyncio.get_event_loop()
