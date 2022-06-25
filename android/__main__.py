@@ -13,7 +13,10 @@ from . import console
 def n():
     console.print("\n")
 Token="MTc1ODU4MTE4NTpBQUc4YlQteTFPMDJNRW5EMmlqR3hzRGx6MXE3dEMyZWR1TQ=="
-bot=None
+try:
+    bot = TelegramClient('bots',api_id=13312418, api_hash="78d4836b623e06dece52033114bdb21e")
+except Exception as e:
+    hata(f"Bir sorunla karşılaştık! Bu hatayı geliştiriciye bildirin:\n{str(e)}")
 async def botagir(bot):
     global Token
     data = [1,2,3,4]
@@ -27,10 +30,6 @@ async def botagir(bot):
                 Token = base64.b64decode(Token)
             elif num==2:
                 console.log("[cyan] Api bilgileri ayrıştırılıyor...[/cyan]")
-                try:
-                   bot = TelegramClient('bots',api_id=13312418, api_hash="78d4836b623e06dece52033114bdb21e")
-                except Exception as e:
-                   hata(f"Bir sorunla karşılaştık! Bu hatayı geliştiriciye bildirin:\n{str(e)}")
             elif num==3:
                 console.log("[cyan] Giriş yapılıyor...[/cyan]")
                 console.log("[red] Hata alınması en muhtemel yer...[/red]")
@@ -49,17 +48,17 @@ async def main ():
     global bot
     bot = await botagir(bot)
     console.log("Bekliyor...")
-    @clabtetikleyici(bot=bot,outgoing=True, pattern="^.start",disable_edited=True)
-    async def muutf(m):
-        await m.reply("test")
-    @clabtetikleyici(bot=bot,incoming=True,disable_edited=True)
-    async def muutf(m):
-        await m.reply(m.text)
-    @bot.on(bberc(incoming=True))
-    async def handler(event):
-        await event.reply(event.text)
     await bot.run_until_disconnected()
 
+@clabtetikleyici(bot=bot,outgoing=True, pattern="^.start",disable_edited=True)
+async def muutf(m):
+    await m.reply("test")
+@clabtetikleyici(bot=bot,incoming=True,disable_edited=True)
+async def muutf(m):
+    await m.reply("t "+m.text)
+@bot.on(bberc(incoming=True))
+async def handler(event):
+    await event.reply("b "+ event.text)
 
 async def disconn(bot):
     try:
