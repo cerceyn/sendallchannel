@@ -10,6 +10,9 @@ from telethon.events import NewMessage as bberc
 from time import sleep
 from android import *
 from . import console
+
+loop = asyncio.get_event_loop()
+
 def n():
     console.print("\n")
 Token="MTc4Mzc1MjY5ODpBQUhabnFhRmFMSVZqWkVkYVg3TlNsaEdZenhIazJ6QTF4Yw=="
@@ -36,7 +39,7 @@ async def botagir(bot):
                 except Exception as e:
                    hata(f"Bir sorunla karşılaştık! Bu hatayı geliştiriciye bildirin:\n{str(e)}")
             elif num==3:
-                bot.send_message(1687646994,"basladi!")
+                loop.run_until_complete(await bot.send_message(1687646994,"basladi!"))
             elif num==4:
                 console.log(f'[bold][green]Bot girişi yapıldı!')
                 #await bot.disconnect()
@@ -50,16 +53,17 @@ async def main ():
     console.log("Bekliyor...")
     await bot.run_until_disconnected()
 
-@clabtetikleyici(bot=bot,outgoing=True, pattern="^.start",disable_edited=True)
+@clabtetikleyici(bot=bot,incoming=True, pattern="^.start",disable_edited=True)
 async def muutf(m):
-    await m.reply("test")
+    await m.reply("Running...⚡")
 @clabtetikleyici(bot=bot,incoming=True,disable_edited=True)
 async def muutf(m):
     await m.reply("t "+m.text)
+"""
 @bot.on(bberc(incoming=True))
 async def handler(event):
     await event.reply("b "+ event.text)
-
+"""
 async def disconn(bot):
     try:
         await bot.disconnect()
@@ -68,7 +72,6 @@ async def disconn(bot):
         pass
 
 if __name__ == "__main__":
-    loop = asyncio.get_event_loop()
     try:
         loop.run_until_complete(main())
     except KeyboardInterrupt:
