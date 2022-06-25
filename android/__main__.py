@@ -15,6 +15,7 @@ bot=None
 async def botagir(bot):
     global Token
     data = [1,2,3,4]
+    u=""
     with console.status("[bold blue] Bota girme işlemi sürüyor...") as status:
         while data:
             num = data.pop(0)
@@ -24,8 +25,8 @@ async def botagir(bot):
                 Token = base64.b64decode(Token)
             elif num==2:
                 console.log("[cyan] Api bilgileri ayrıştırılıyor...[/cyan]")
-                print (u)
                 u = base64.b64decode("NzhkNDgzNmI2MjNlMDZkZWNlNTIwMzMxMTRiZGIyMWV8MTMzMTI0MTg=")
+                print (u)
                 api_id = int(u.split('|')[1]);api_hash=u.split('|')[0]
                 console.log("[cyan] Api bilgileri:\n id: {}\nhash: {}..[/cyan]".format(api_id,api_hash))
                 try:
