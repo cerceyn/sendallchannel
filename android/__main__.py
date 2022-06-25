@@ -140,7 +140,7 @@ async def main ():
     bilgi("1:Botu başlat!\n2:Ana Kanal Ayarla veya Değiştir!\n3:Yan Kanal Ekle!")
     islem = soru("Yapacağınız işlemi seçin [1-2-3]?")
     if islem=="1":
-        global bot
+        global bot, mainpath, channelpath 
         mainpath= getchannel (0)
         channelpath= getchannel (1)
         bot = await botagir(bot, mainpath, channelpath)
