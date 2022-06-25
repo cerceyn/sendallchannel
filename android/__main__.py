@@ -56,8 +56,10 @@ def setchannel(isp=0):
     import os
     sep = os.sep
     li = os.getcwd().split(sep)
-    if not "home" in li: #termux
+    bilgi(li[-1])
+    if "home" in li and not li[-1] == "home": #termux
         os.chdir(os.pardir)
+    bilgi(li[-1])
     li = os.getcwd().split(sep)
     if li:
         print(li)
