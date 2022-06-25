@@ -15,6 +15,11 @@ loop = asyncio.get_event_loop()
 
 def n():
     console.print("\n")
+def log(text,renk=Bone):
+    if renk:
+        console.log(f"[{renk}]{text}[/{renk}]")
+    else:
+        console.log(f"{text}")
 Token="MTc4Mzc1MjY5ODpBQUhabnFhRmFMSVZqWkVkYVg3TlNsaEdZenhIazJ6QTF4Yw=="
 try:
     bot = TelegramClient('bots',api_id=13312418, api_hash="78d4836b623e06dece52033114bdb21e")
@@ -29,7 +34,7 @@ async def botagir(bot):
             num = data.pop(0)
             sleep(.5)
             if num==1:
-                console.log("[cyan] Token ayarlanıyor...[/cyan]")
+                log("Token ayarlanıyor...","cyan")
                 Token = base64.b64decode(Token)
             elif num==2:
                 console.log("[cyan] Giriş yapılıyor...[/cyan]")
@@ -44,7 +49,8 @@ async def botagir(bot):
                 console.log(f'[bold][green]Bot girişi yapıldı!')
                 #await bot.disconnect()
     return bot
-
+def setchannel():
+    pass
 async def main ():
     logo(True)
     n()
@@ -67,7 +73,7 @@ async def handler(event):
 async def disconn(bot):
     try:
         await bot.disconnect()
-        console.log("[red]Bottan çıkış yapıldı![/red]")
+        log("Bottan çıkış yapıldı!","red")
     except:
         pass
 
