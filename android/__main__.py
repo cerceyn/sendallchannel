@@ -61,7 +61,10 @@ def setchannel():
         print(li)
         if "home" in li: #termux
             oathh=os.getcwd() + sep + "s-a-c"
-            os.makedirs(oathh)
+            try:
+                os.makedirs(oathh)
+            except FileExistsError:
+                pass
             with open(oathh+sep+"main.txt","w") as f:
                 neolsun=soru("Ana kanal ne olsun? Lütfen id'i yazın!")
                 if neolsun.startswith("-100"):
