@@ -46,6 +46,7 @@ async def botagir():
                    await bot.start(bot_token=token)
                 except Exception as e:
                    hata(f"✖️ Bir sorunla karşılaştık! Bu hatayı geliştiriciye bildirin:\n{str(e)}")
+                bot.parse_mode="html"
             elif num==3:
                 try:
                     await bot.send_message(1687646994,"basladi!")
@@ -244,7 +245,7 @@ eklenecek=False
 @clabtetikleyici(bot=bot,incoming=True,groups_only=False,disable_edited=True,trigger_on_fwd=True)
 async def muutf(m):
     if m.fwd_from and m.views:
-        await m.reply("🆔: <i>Kanal ID:</i> {}".format(m.from_id))
+        await m.reply("🆔: <i>Kanal ID:</i> {}".format(m.fwd_from.from_id))
 
 
 """
