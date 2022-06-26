@@ -233,13 +233,13 @@ async def main ():
                     pass #raise KeyboardInterrupt("Çıkış!")
             await disconn ()
         elif islem=="2":
-            statusz="Ana kanal işlemlerinden çıkıldı!")
+            statusz="Ana kanal işlemlerinden çıkıldı!"
             await setchannel ()
             onayl = onay("Başka bir işlem yapmak ister misiniz?")
             if onayl:continue
             else:break
         elif islem=="3":
-            statusz="Yan kanal işlemlerinden çıkıldı!")
+            statusz="Yan kanal işlemlerinden çıkıldı!"
             await setchannel (1)
             onayl = onay("Başka bir işlem yapmak ister misiniz?")
             if onayl:continue
