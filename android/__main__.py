@@ -107,6 +107,7 @@ async def setchannel(isp=0,pprint=True,forceadd=""):
                 if os.path.isfile(oathh+sep+"channel.txt"):adds="\n"
                 else:adds=""
                 with open(oathh+sep+"channel.txt","a") as f:
+                    channelsss=f.read()
                     if forceadd == "":
                         neolsun=soru("🍀 Eklenecek yan kanal ne olsun? Lütfen id'i yazın!")
                         onayl = onay(f"Yan kanallara '{neolsun}' eklensin mi ?")
@@ -114,8 +115,8 @@ async def setchannel(isp=0,pprint=True,forceadd=""):
                             neolsunn = int(neolsun)
                         except ValueError:
                             noadded("Lütfen bir kanal id yazın!");error=True
-
-                        if neolsun.startswith("-100") and onayl:
+                        if neolsun in channelsss:noadded("Bu kadar zaten daha önceden eklenmiş!")
+                        elif neolsun.startswith("-100") and onayl:
                             f.write(adds+neolsun);basarili("✅ İşlem başarıyla tamamlandı!")
                         elif onayl==False:
                             return await setchannel (isp,False, forceadd)
