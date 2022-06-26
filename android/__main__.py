@@ -6,6 +6,7 @@ from telethon.errors import PeerIdInvalidError
 from telethon.sessions import StringSession
 from telethon import TelegramClient
 from subprocess import PIPE, Popen
+from rich import print as rprint
 from telethon import types
 from time import sleep
 from android import *
@@ -64,7 +65,7 @@ def setchannel(isp=0):
         os.chdir(os.pardir)
     li = os.getcwd().split(sep)
     if li:
-        print(li)
+        rprint(li)
         if "home" in li: #termux
             oathh=os.getcwd() + sep + "s-a-c"
             try:
@@ -113,7 +114,7 @@ def getchannel (isp=0):
         os.chdir(os.pardir)
     li = os.getcwd().split(sep)
     if li:
-        print(li)
+        rprint(li)
         if "home" in li: #termux
             oathh=os.getcwd() + sep + "s-a-c"
             try:
@@ -172,7 +173,7 @@ async def main ():
     while True:
         logo(True)
         onemli("🟥 1:Botu başlat!\n🟧 2:Ana Kanal Ayarla veya Değiştir!\n🟨 3:Yan Kanal Ekle!\n🟫4:Çıkış")
-        islem = soru("Yapacağınız işlemi seçin [1-2-3]?")
+        islem = soru("Yapacağınız işlemi seçin [1-4]?")
         if islem=="1":
             global bot, mainpath, channelpath 
             mainpath= getchannel (0)
