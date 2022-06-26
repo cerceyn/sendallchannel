@@ -91,7 +91,7 @@ def clabtoken(text,coz=True):
     return None, None, None
 def passed (text):
     nn()
-    console.print(Panel(f'[yellow1]🚸 {text}[/]',width=70),justify="center")
+    console.print(Panel(f'[dark_red]🚸 {text}[/]',width=70),justify="center")
 def noadded (text):
     nn()
     console.log(f'[red]❎ {text}[/]')  
@@ -107,8 +107,11 @@ def ads (text,time=5):
     antripp(time)              
 def soru (soru):
     nn()
-    console.print(f'[bold thistle1]❔ {soru}[/]')                         
-    return console.input(f"[bold yellow1]>> [/]")
+    console.print(f'[bold thistle1]❔ {soru}[/]')
+    try:                 
+        return console.input(f"[bold yellow1]>> [/]")
+    except KeyboardInterrupt:
+        hata("Klavye çıkışı yapıldı!")
 def onay (text):
     while True:
         cevap=soru(text)
@@ -123,4 +126,4 @@ def logo (satirbırak=False):
     if satirbırak:
         for i in range(25):
             console.print("\n")
-    console.print(Panel(f'[bold cyan]{text}[/]',width=90),justify="center")
+    console.print(Panel(f'[bold medium_purple]{text}[/]',width=90),justify="center")
