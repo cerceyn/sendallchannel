@@ -224,10 +224,10 @@ async def muutf(m):
 async def muutf(m):
     if int(m.chat_id)==int(mainpath):
         await forchannel (m.client, channelpath, m)
-    elif m.is_private:
-        await m.reply("✉️: {}".format(str(m)))
     else:
-        bilgi(f"Şuradan bir mesaj algılandım🌀: {m.chat_id}")
+        await m.reply("✉️: {}".format(str(m)))
+    #else:
+    #    bilgi(f"Şuradan bir mesaj algılandım🌀: {m.chat_id}")
 """
 @bot.on(bberc(incoming=True))
 async def handler(event):
