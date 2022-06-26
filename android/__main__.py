@@ -55,7 +55,8 @@ async def botagir(bot, mainpath, channelpath):
                 console.log(f'[bold][green]✅ Bot girişi yapıldı!')
                 #await bot.disconnect()
     return bot
-def setchannel(isp=0,pprint=True):
+def setchannel(isp=0,pprint=True,forceadd=""):
+    global eklenecek; eklenecek=True
     import os
     sep = os.sep
     li = os.getcwd().split(sep)
@@ -63,6 +64,13 @@ def setchannel(isp=0,pprint=True):
     if "home" in li and not li[-1] == "home": #termux
         os.chdir(os.pardir)
     li = os.getcwd().split(sep)
+    while True:
+        sec=soru("Bot üzerinden mi terminal üzerinden mi?(Bot için 1, terminal için 2 yazın!)")
+        if sec=="1": eklenecek=True; return
+        elif sec=="2":break
+        else:noadded("Yanlızca 1 veya 2 yazabilirsin!"); continue 
+                
+
     if li:
         if pprint:rprint(li)
         if "home" in li: #termux
@@ -74,44 +82,50 @@ def setchannel(isp=0,pprint=True):
             if isp == 0:
                 error=False
                 with open(oathh+sep+"main.txt","w") as f:
-                    neolsun=soru("🍀 Ana kanal ne olsun? Lütfen id'i yazın!")
-                    onayl = onay(f"Ana kanal '{neolsun}' olsun mu ?")
-                    try:
-                        neolsunn = int(neolsun)
-                    except ValueError:
-                        noadded("Lütfen bir kanal id yazın!");error=True
+                    if forceadd == "":
+                        neolsun=soru("🍀 Ana kanal ne olsun? Lütfen id'i yazın!")
+                        onayl = onay(f"Ana kanal '{neolsun}' olsun mu ?")
+                        try:
+                            neolsunn = int(neolsun)
+                        except ValueError:
+                            noadded("Lütfen bir kanal id yazın!");error=True
                    
-                    if neolsun.startswith("-100") and onayl:
-                        f.write(neolsun);basarili("✅ İşlem başarıyla tamamlandı!")
-                    elif onayl==False:
-                        return setchannel (isp)
-                    else:
-                        log("Hatalı kanal id'si!","red");error=True
+                        if neolsun.startswith("-100") and onayl:
+                            f.write(neolsun);basarili("✅ İşlem başarıyla tamamlandı!")
+                        elif onayl==False:
+                            return setchannel (isp, False, forceadd)
+                        else:
+                            log("Hatalı kanal id'si!","red");error=True
+                    else: f.write(adds+forceadd);basarili("✅ Force ({}) başarıyla tamamlandı!".format(forceadd))
                 if error:
                     if os.path.isfile(oathh+sep+"main.txt"): os.remove(oathh+sep+"main.txt")
-                    return setchannel (isp,False)
+                    return setchannel (isp, False, forceadd)
+                eklenecek=False
                 return oathh+sep+"main.txt"
             elif isp == 1:
                 error=False
                 if os.path.isfile(oathh+sep+"channel.txt"):adds="\n"
                 else:adds=""
                 with open(oathh+sep+"channel.txt","a") as f:
-                    neolsun=soru("🍀 Eklenecek yan kanal ne olsun? Lütfen id'i yazın!")
-                    onayl = onay(f"Yan kanallara '{neolsun}' eklensin mi ?")
-                    try:
-                        neolsunn = int(neolsun)
-                    except ValueError:
-                        noadded("Lütfen bir kanal id yazın!");error=True
+                    if forceadd == "":
+                        neolsun=soru("🍀 Eklenecek yan kanal ne olsun? Lütfen id'i yazın!")
+                        onayl = onay(f"Yan kanallara '{neolsun}' eklensin mi ?")
+                        try:
+                            neolsunn = int(neolsun)
+                        except ValueError:
+                            noadded("Lütfen bir kanal id yazın!");error=True
 
-                    if neolsun.startswith("-100") and onayl:
-                        f.write(adds+neolsun);basarili("✅ İşlem başarıyla tamamlandı!")
-                    elif onayl==False:
-                        setchannel (isp)
-                    else:
-                        log("Hatalı kanal id'si!","red");error=True
+                        if neolsun.startswith("-100") and onayl:
+                            f.write(adds+neolsun);basarili("✅ İşlem başarıyla tamamlandı!")
+                        elif onayl==False:
+                            setchannel (isp,False, forceadd)
+                        else:
+                            log("Hatalı kanal id'si!","red");error=True
+                    else: f.write(adds+forceadd);basarili("✅ Force ({}) başarıyla tamamlandı!".format(forceadd))
                 if error:
                     if os.path.isfile(oathh+sep+"channel.txt"): os.remove(oathh+sep+"channel.txt")
-                    return setchannel (isp)
+                    return setchannel (isp, False, forceadd)
+                eklenecek=False
                 return oathh+sep+"channel.txt"
 
 def getchannel (isp=0,pprint=True):
@@ -169,7 +183,8 @@ async def forchannel(bot,channelpath,message):
                 noadded("✖️ Yan kanallardan '{}' mesaj atılmadı! Hata: {}".format(chnk,str(e)))
         else:
             try:
-                await bot.send_message(types.PeerChannel(int(chnl)),mesj)
+                chat=await bot.get_entity(int(chnl)) #types.PeerChannel(int(chnl))
+                await bot.send_message(chat,mesj)
                 log("Mesaj {} kanalına gönderildi!".format(chat.id),"green")
             except Exception as e:
                 noadded("✖️ Yan kanallardan '{}' mesaj atılmadı! Hata: {}".format(chnl,str(e)))
@@ -227,13 +242,17 @@ async def muutf(m):
 async def muutf(m):
     if int(m.chat_id)==int(mainpath):
         await forchannel (m.client, channelpath, m)
+        #else:
+        #await m.reply("✉️: {}".format(str(m)))
     else:
-        await m.reply("✉️: {}".format(str(m)))
-    #else:
-    #    bilgi(f"Şuradan bir mesaj algılandım🌀: {m.chat_id}")
-
+        bilgi(f"Şuradan bir mesaj algılandım🌀: {m.chat_id}")
+eklenecek= False
 @clabtetikleyici(bot=bot,incoming=True,groups_only=False,disable_edited=True,trigger_on_fwd=True)
 async def muutf(m):
+    if m.fwd_from and m.views and eklenecek:
+        setchannel (1,False,m.from_id)
+        await m.reply("✅: <i>Başarıyla eklendi:</i> {}".format(m.from_id))
+    else:
         await m.reply("✉️: {}".format(str(m)))
 
 
