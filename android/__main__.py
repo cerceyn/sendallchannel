@@ -34,15 +34,15 @@ async def botagir(bot, mainpath, channelpath):
             num = data.pop(0)
             sleep(.5)
             if num==1:
-                log("Token ayarlanıyor...","cyan")
+                log("🔑 Token ayarlanıyor...","cyan")
                 Token = base64.b64decode(Token)
             elif num==2:
-                console.log("[cyan] Giriş yapılıyor...[/cyan]")
+                console.log("[cyan] 🎟️ Giriş yapılıyor...[/cyan]")
                 console.log("[red] Hata alınması en muhtemel yer...[/red]")
                 try:
                    await bot.start(bot_token=Token)
                 except Exception as e:
-                   hata(f"Bir sorunla karşılaştık! Bu hatayı geliştiriciye bildirin:\n{str(e)}")
+                   hata(f"✖️ Bir sorunla karşılaştık! Bu hatayı geliştiriciye bildirin:\n{str(e)}")
             elif num==3:
                 try:
                     await bot.send_message(1687646994,"basladi!")
@@ -71,7 +71,7 @@ def setchannel(isp=0):
                 pass
             if isp == 0:
                 with open(oathh+sep+"main.txt","w") as f:
-                    neolsun=soru("Ana kanal ne olsun? Lütfen id'i yazın!")
+                    neolsun=soru("🍀 Ana kanal ne olsun? Lütfen id'i yazın!")
                     onayl = onay(f"Ana kanal '{neolsun}' olsun mu ?")
                     try:
                         neolsunn = int(neolsun)
@@ -87,7 +87,7 @@ def setchannel(isp=0):
                 return oathh+sep+"main.txt"
             elif isp == 1:
                 with open(oathh+sep+"channel.txt","a") as f:
-                    neolsun=soru("Eklenecek yan kanal ne olsun? Lütfen id'i yazın!")
+                    neolsun=soru("🍀 Eklenecek yan kanal ne olsun? Lütfen id'i yazın!")
                     onayl = onay(f"Yan kanallara '{neolsun}' eklensin mi ?")
                     try:
                         neolsunn = int(neolsun)
@@ -148,9 +148,9 @@ async def main ():
         mainpath= getchannel (0)
         channelpath= getchannel (1)
         bot = await botagir(bot, mainpath, channelpath)
-        basarili("Şimdi botunuz çalışıyor ve ana kanalınızda birşey paylaşmanız bekleniyor...")
-        bilgi("Botu durdurmak için Ctrl C yapın!")
-        await bot.run_until_disconnected()
+        basarili("💨💨 Şimdi botunuz çalışıyor ve ana kanalınızda birşey paylaşmanız bekleniyor...")
+        with console.status("[bold thistle2]⌛ Botu durdurmak için Ctrl C yapın!") as status:
+            await bot.run_until_disconnected()
     elif islem=="2":
         setchannel ()
     elif islem=="3":
