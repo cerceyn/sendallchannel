@@ -292,7 +292,6 @@ if __name__ == "__main__":
         loop.run_until_complete(main())
     except KeyboardInterrupt:
         n()
-    finally:
         loop.run_until_complete(disconn())
         hata("Güle güle!")
 
