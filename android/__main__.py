@@ -164,7 +164,7 @@ channelpath=""
 async def main ():
     logo(True)
     while True:
-        bilgi("🟥1:Botu başlat!\n🟧2:Ana Kanal Ayarla veya Değiştir!\n🟨3:Yan Kanal Ekle!")
+        onemli("🟥 1:Botu başlat!\n🟧 2:Ana Kanal Ayarla veya Değiştir!\n🟨 3:Yan Kanal Ekle!\n🟫4:Çıkış")
         islem = soru("Yapacağınız işlemi seçin [1-2-3]?")
         if islem=="1":
             global bot, mainpath, channelpath 
@@ -173,7 +173,10 @@ async def main ():
             bot = await botagir(bot, mainpath, channelpath)
             basarili("💨💨 Şimdi botunuz çalışıyor ve ana kanalınızda birşey paylaşmanız bekleniyor...")
             with console.status("[bold thistle1]⌛ Bot çalışıyor, durdurmak için Ctrl C yapın!") as status:
-                await bot.run_until_disconnected()
+                try:
+                    await bot.run_until_disconnected()
+                except KeyboardInterrupt:
+                    raise Exception("Çıkış!")
         elif islem=="2":
             setchannel ()
             onayl = onay("Başka bir işlem yapmak ister misiniz?")
