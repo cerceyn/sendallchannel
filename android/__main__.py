@@ -149,12 +149,14 @@ async def forchannel(bot,channelpath,message):
             bilgi("Şuraya mesaj gönderilmeye çalışılıyor..: {}".format(chnl))
          #   try:
             chat=await bot.get_entity(int(chnl))
-            await bot.send_message(chat.id,message)
+            await bot.send_message(chat.id,str(message))
+            log("Mesaj {} kanalına gönderildi!".format(chat.id),"green")
                # except Exception as e:
           #    noadded("✖️ Yan kanallardan '{}' mesaj atılmadı! Hata: {}".format(chnk,str(e)))
         else:
             #try:
-            await bot.send_message(types.PeerChannel(int(chnl)),message)
+            await bot.send_message(types.PeerChannel(int(chnl)),str(message))
+            log("Mesaj {} kanalına gönderildi!".format(chat.id),"green")
             #except Exception as e:
             #        noadded("✖️ Yan kanallardan '{}' mesaj atılmadı! Hata: {}".format(chnl,str(e)))
 
