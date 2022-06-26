@@ -53,7 +53,6 @@ async def botagir(bot, mainpath, channelpath):
                     noadded('Mesaj gönderilememe hatası!')
             elif num==4:
                 console.log(f'[bold][green]✅ Bot girişi yapıldı!')
-                sleep(2)
                 #await bot.disconnect()
     return bot
 def setchannel(isp=0):
@@ -172,7 +171,7 @@ async def main ():
     else: os.system("cls")
     while True:
         logo(True)
-        onemli("🟥 1:Botu başlat!\n🟧 2:Ana Kanal Ayarla veya Değiştir!\n🟨 3:Yan Kanal Ekle!\n🟫4:Çıkış")
+        passed("İşlemler:\n🍀 1:Botu başlat!\n🍀 2:Ana Kanal Ayarla veya Değiştir!\n🍀 3:Yan Kanal Ekle!\n🍀 4:Çıkış")
         islem = soru("Yapacağınız işlemi seçin [1-4]?")
         if islem=="1":
             global bot, mainpath, channelpath 
