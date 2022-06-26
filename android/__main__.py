@@ -88,6 +88,8 @@ def setchannel(isp=0):
                         log("Hatalı kanal id'si!","red");f.write("None")
                 return oathh+sep+"main.txt"
             elif isp == 1:
+                if os.path.isfile(oathh+sep+"channel.txt"):adds="\n"
+                else:adds=""
                 with open(oathh+sep+"channel.txt","a") as f:
                     neolsun=soru("🍀 Eklenecek yan kanal ne olsun? Lütfen id'i yazın!")
                     onayl = onay(f"Yan kanallara '{neolsun}' eklensin mi ?")
@@ -97,7 +99,7 @@ def setchannel(isp=0):
                         noadded("Lütfen bir kanal id yazın!");setchannel (isp)
 
                     if neolsun.startswith("-100") and onayl:
-                        f.write("\n"+neolsun);basarili("✅ İşlem başarıyla tamamlandı!")
+                        f.write(adds+neolsun);basarili("✅ İşlem başarıyla tamamlandı!")
                     elif onayl==False:
                         setchannel (isp)
                     else:
@@ -154,7 +156,7 @@ async def forchannel(bot,channelpath,message):
                 await bot.send_message(chat.id,mesj)
                 log("Mesaj {} kanalına gönderildi!".format(chat.id),"green")
             except PeerIdInvalidError:
-                noadded("Kanal ID'si hatalı, lütfen bunu silin!")
+                noadded("Kanal ID'si({}) hatalı, lütfen bunu silin!".format (chnl))
             except Exception as e:
                 noadded("✖️ Yan kanallardan '{}' mesaj atılmadı! Hata: {}".format(chnk,str(e)))
         else:
