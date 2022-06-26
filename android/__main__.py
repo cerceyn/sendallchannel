@@ -173,7 +173,7 @@ async def main ():
             mainpath= getchannel (0)
             channelpath= getchannel (1)
             bot = await botagir(bot, mainpath, channelpath)
-            basarili("💨💨 Şimdi botunuz çalışıyor ve ana kanalınızda birşey paylaşmanız bekleniyor...")
+            log("💨💨 Şimdi botunuz çalışıyor ve ana kanalınızda birşey paylaşmanız bekleniyor...","green")
             with console.status("[bold thistle1]⌛ Bot çalışıyor, durdurmak için Ctrl C yapın!") as status:
                 try:
                     await bot.run_until_disconnected()
