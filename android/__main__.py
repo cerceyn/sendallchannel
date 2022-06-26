@@ -149,7 +149,7 @@ async def forchannel(bot,channelpath,message):
             bilgi("Şuraya mesaj gönderilmeye çalışılıyor..: {}".format(chnl))
          #   try:
             chat=await bot.get_entity(int(chnl))
-            mesj = await client.get_messages(message.chat_id, ids=message.id)
+            mesj = await bot.get_messages(message.chat_id, ids=message.id)
             await bot.send_message(chat.id,mesj)
             log("Mesaj {} kanalına gönderildi!".format(chat.id),"green")
                # except Exception as e:
@@ -190,6 +190,9 @@ async def main ():
             onayl = onay("Başka bir işlem yapmak ister misiniz?")
             if onayl:logo(False);continue
             else:raise Exception("Çıkış!")
+        elif islem=="4":
+            await disconn(bot)
+            hata("Güle güle!")
         else:
             hata("Hatalı işlem seçimi!")
 
