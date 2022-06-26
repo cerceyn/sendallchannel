@@ -66,7 +66,7 @@ async def setchannel(isp=0,pprint=True,forceadd=""):
     li = os.getcwd().split(sep)
 
     if li:
-        if pprint:rprint("Dizin: "+li)
+        if pprint:rprint(li)
         if "home" in li: #termux
             oathh=os.getcwd() + sep + "s-a-c"
             try:
