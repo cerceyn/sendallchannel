@@ -28,7 +28,7 @@ try:
 except Exception as e:
     hata(f"Bir sorunla karşılaştık! Bu hatayı geliştiriciye bildirin:\n{str(e)}")
 async def botagir():
-    global Token,bot
+    global bot
     data = [1,2,3,4]
     u=""
     n()
@@ -67,10 +67,17 @@ async def setchannel(isp=0,pprint=True,forceadd=""):
     li = os.getcwd().split(sep)
     while True:
         sec=soru("Bot üzerinden mi terminal üzerinden mi?(Bot için 1, terminal için 2 yazın!)")
-        if sec=="1": await botagir(); return
+        if sec=="1":
+            await botagir()
+
+            with console.status("[bold thistle1]⌛ @meyusbot'a yan kanaldan bir mesaj iletmeniz bekleniyor, iptal için Ctrl C yapın!") as status:
+                try:
+                    await bot.run_until_disconnected()
+                except KeyboardInterrupt:
+                    raise KeyboardInterrupt("Çıkış!")
+            return
         elif sec=="2":break
         else:noadded("Yanlızca 1 veya 2 yazabilirsin!"); continue 
-                
 
     if li:
         if pprint:rprint("Dizin: "+li)
@@ -213,8 +220,7 @@ async def main ():
                 try:
                     await bot.run_until_disconnected()
                 except KeyboardInterrupt:
-                    break
-                    raise Exception("Çıkış!")
+                    raise KeyboardInterrupt("Çıkış!")
         elif islem=="2":
             await setchannel ()
             onayl = onay("Başka bir işlem yapmak ister misiniz?")
@@ -253,6 +259,7 @@ async def muutf(m):
     if m.fwd_from and m.views and eklenecek:
         await setchannel (1,False,m.from_id)
         await m.reply("✅: <i>Başarıyla eklendi:</i> {}".format(m.from_id))
+        await bot.disconnect()
     else:
         await m.reply("✉️: {}".format(str(m)))
 
