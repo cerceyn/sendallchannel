@@ -62,12 +62,14 @@ async def setchannel(isp=0,pprint=True,forceadd=""):
     sep = os.sep
     li = os.getcwd().split(sep)
     if pprint:bilgi(li[-1])
+    passed("Dizin ayarlanıyor")
     if "home" in li: #termux
         while True:
-            if not li[-1] == "home": #termux
+            if not li[len(li)-1] == "home": #termux
                 os.chdir(os.pardir)
             else:
                 break
+                li = os.getcwd().split(sep)
     else:
         hata("Geçersiz işletim sistemi!")
     li = os.getcwd().split(sep)
@@ -134,12 +136,14 @@ async def getchannel (isp=0,pprint=True):
     sep = os.sep
     li = os.getcwd().split(sep)
     if pprint:bilgi(li[-1])
+    passed("Dizin ayarlanıyor")
     if "home" in li: #termux
         while True:
-            if not li[-1] == "home": #termux
+            if not li[len(li)-1] == "home": #termux
                 os.chdir(os.pardir)
             else:
                 break
+                li = os.getcwd().split(sep)
     else:
         hata("Geçersiz işletim sistemi!")
     li = os.getcwd().split(sep)
