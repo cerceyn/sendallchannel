@@ -27,8 +27,8 @@ try:
     bot = TelegramClient('bots',api_id=13312418, api_hash="78d4836b623e06dece52033114bdb21e")
 except Exception as e:
     hata(f"Bir sorunla karşılaştık! Bu hatayı geliştiriciye bildirin:\n{str(e)}")
-async def botagir(bot, mainpath, channelpath):
-    global Token
+async def botagir():
+    global Token,bot
     data = [1,2,3,4]
     u=""
     n()
@@ -43,7 +43,8 @@ async def botagir(bot, mainpath, channelpath):
                 console.log("[cyan] 🎟️ Giriş yapılıyor...[/cyan]")
                 console.log("[red] 🎟️ Hata alınması en muhtemel yer...[/red]")
                 try:
-                   await bot.start(bot_token=Token)
+                   if not bot.is_connected:await bot.start(bot_token=Token)
+                   else:onemli("Bot zaten başlamış görünüyor!")
                 except Exception as e:
                    hata(f"✖️ Bir sorunla karşılaştık! Bu hatayı geliştiriciye bildirin:\n{str(e)}")
             elif num==3:
@@ -66,7 +67,7 @@ def setchannel(isp=0,pprint=True,forceadd=""):
     li = os.getcwd().split(sep)
     while True:
         sec=soru("Bot üzerinden mi terminal üzerinden mi?(Bot için 1, terminal için 2 yazın!)")
-        if sec=="1": eklenecek=True; return
+        if sec=="1": asyncio.run(botagir()); return
         elif sec=="2":break
         else:noadded("Yanlızca 1 veya 2 yazabilirsin!"); continue 
                 
@@ -205,7 +206,7 @@ async def main ():
             global bot, mainpath, channelpath 
             mainpath= getchannel (0)
             channelpath= getchannel (1)
-            bot = await botagir(bot, mainpath, channelpath)
+            bot = await botagir()
             n()
             log("💨💨 Şimdi botunuz çalışıyor ve ana kanalınızda birşey paylaşmanız bekleniyor...","green")
             with console.status("[bold thistle1]⌛ Bot çalışıyor, durdurmak için Ctrl C yapın!") as status:
