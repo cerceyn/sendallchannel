@@ -75,7 +75,7 @@ def setchannel(isp=0):
                     onayl = onay(f"Ana kanal '{neolsun}' olsun mu ?")
                     try:
                         neolsunn = int(neolsun)
-                    except TypeError:
+                    except ValueError:
                         noadded("Lütfen bir kanal id yazın!");setchannel (isp)
                    
                     if neolsun.startswith("-100") and onayl:
@@ -91,7 +91,7 @@ def setchannel(isp=0):
                     onayl = onay(f"Yan kanallara '{neolsun}' eklensin mi ?")
                     try:
                         neolsunn = int(neolsun)
-                    except TypeError:
+                    except ValueError:
                         noadded("Lütfen bir kanal id yazın!");setchannel (isp)
 
                     if neolsun.startswith("-100") and onayl:
