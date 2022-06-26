@@ -55,16 +55,16 @@ async def botagir(bot, mainpath, channelpath):
                 console.log(f'[bold][green]✅ Bot girişi yapıldı!')
                 #await bot.disconnect()
     return bot
-def setchannel(isp=0):
+def setchannel(isp=0,pprint=True):
     import os
     sep = os.sep
     li = os.getcwd().split(sep)
-    bilgi(li[-1])
+    if pprint:bilgi(li[-1])
     if "home" in li and not li[-1] == "home": #termux
         os.chdir(os.pardir)
     li = os.getcwd().split(sep)
     if li:
-        rprint(li)
+        if pprint:rprint(li)
         if "home" in li: #termux
             oathh=os.getcwd() + sep + "s-a-c"
             try:
@@ -84,12 +84,12 @@ def setchannel(isp=0):
                     if neolsun.startswith("-100") and onayl:
                         f.write(neolsun);basarili("✅ İşlem başarıyla tamamlandı!")
                     elif onayl==False:
-                        setchannel (isp)
+                        return setchannel (isp)
                     else:
                         log("Hatalı kanal id'si!","red");error=True
                 if error:
                     if os.path.isfile(oathh+sep+"main.txt"): os.remove(oathh+sep+"main.txt")
-                    return setchannel (isp)
+                    return setchannel (isp,False)
                 return oathh+sep+"main.txt"
             elif isp == 1:
                 error=False
@@ -114,16 +114,16 @@ def setchannel(isp=0):
                     return setchannel (isp)
                 return oathh+sep+"channel.txt"
 
-def getchannel (isp=0):
+def getchannel (isp=0,pprint=True):
     import os
     sep = os.sep
     li = os.getcwd().split(sep)
-    bilgi(li[-1])
+    if pprint:bilgi(li[-1])
     if "home" in li and not li[-1] == "home": #termux
         os.chdir(os.pardir)
     li = os.getcwd().split(sep)
     if li:
-        rprint(li)
+        if pprint:rprint(li)
         if "home" in li: #termux
             oathh=os.getcwd() + sep + "s-a-c"
             try:
@@ -135,19 +135,19 @@ def getchannel (isp=0):
                     with open(oathh+sep+"main.txt","r") as f:
                         file = f.read()
                     if not file.split('\n')[0].startswith("-100"):
-                        return setchannel (isp)
+                        setchannel (isp,False); return getchannel (isp,False)
                     return file.split('\n')[0]
                 else:
-                    return setchannel (isp)
+                    setchannel (isp,False); return getchannel (isp,False)
             elif isp == 1:
                 if os.path.isfile(oathh+sep+"channel.txt"):
                     with open(oathh+sep+"channel.txt","r") as f:
                         file = f.read()
                     if not file.split('\n')[0].startswith("-100"):
-                        return setchannel (isp)
+                        setchannel (isp,False); return getchannel (isp,False)
                     return file.split('\n')
                 else:
-                    return setchannel (isp)
+                    setchannel (isp,False); return getchannel (isp,False)
     return None
 
 async def forchannel(bot,channelpath,message):
