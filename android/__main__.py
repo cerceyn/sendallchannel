@@ -182,7 +182,10 @@ async def main ():
     while True:
         logo(True)
         passed("İşlemler:\n\n🍀 1:Botu başlat!\n🍀 2:Ana Kanal Ayarla veya Değiştir!\n🍀 3:Yan Kanal Ekle!\n🍀 4:Çıkış")
-        islem = soru("Yapacağınız işlemi seçin [1-4]?")
+        try:
+            islem = soru_("Yapacağınız işlemi seçin [1-4]?")
+        except:
+            islem = "4"
         if islem=="1":
             global bot, mainpath, channelpath 
             mainpath= getchannel (0)
@@ -220,7 +223,7 @@ async def muutf(m):
     #string = m.pattern_match.group(1)
     await m.reply("🆔: {}".format(mainpath))
 
-@clabtetikleyici(bot=bot,incoming=True,disable_edited=True)
+@clabtetikleyici(bot=bot,incoming=True,groups_only=True,disable_edited=True)
 async def muutf(m):
     if int(m.chat_id)==int(mainpath):
         await forchannel (m.client, channelpath, m)
@@ -228,6 +231,12 @@ async def muutf(m):
         await m.reply("✉️: {}".format(str(m)))
     #else:
     #    bilgi(f"Şuradan bir mesaj algılandım🌀: {m.chat_id}")
+
+@clabtetikleyici(bot=bot,incoming=True,groups_only=False,disable_edited=True,trigger_on_fwd=True)
+async def muutf(m):
+        await m.reply("✉️: {}".format(str(m)))
+
+
 """
 @bot.on(bberc(incoming=True))
 async def handler(event):
