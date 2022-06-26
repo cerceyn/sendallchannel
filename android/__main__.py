@@ -195,7 +195,7 @@ async def main ():
         try:
             islem = soru_("Yapacağınız işlemi seçin [1-4]?")
         except:
-            await disconn (bot)
+            await disconn (None)
         if islem=="1":
             global bot, mainpath, channelpath 
             mainpath= await getchannel (0)
@@ -254,6 +254,7 @@ async def handler(event):
     await event.reply("b "+ event.text)
 """
 async def disconn(bot):
+    if bot==None:global bot
     try:
         await bot.disconnect()
         log("Bottan çıkış yapıldı!","red")
