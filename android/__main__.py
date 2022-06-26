@@ -139,7 +139,9 @@ def getchannel (isp=0):
     return None
 
 async def forchannel(bot,channelpath,message):
-    bilgi ("Perceived: "+channelpath)
+    bilgi ("Perceived: ")
+    onemli(channelpath)
+
     for i in channelpath:
         try:
             if i.startswith("-100"):
