@@ -94,13 +94,13 @@ async def setchannel(isp=0,pprint=True,forceadd=""):
                         if neolsun.startswith("-100") and onayl:
                             f.write(neolsun);basarili("✅ İşlem başarıyla tamamlandı!")
                         elif onayl==False:
-                            return setchannel (isp, False, forceadd)
+                            return await setchannel (isp, False, forceadd)
                         else:
                             log("Hatalı kanal id'si!","red");error=True
                     else: f.write(adds+forceadd);basarili("✅ Force ({}) başarıyla tamamlandı!".format(forceadd))
                 if error:
                     if os.path.isfile(oathh+sep+"main.txt"): os.remove(oathh+sep+"main.txt")
-                    return setchannel (isp, False, forceadd)
+                    return await setchannel (isp, False, forceadd)
                 eklenecek=False
                 return oathh+sep+"main.txt"
             elif isp == 1:
@@ -119,17 +119,17 @@ async def setchannel(isp=0,pprint=True,forceadd=""):
                         if neolsun.startswith("-100") and onayl:
                             f.write(adds+neolsun);basarili("✅ İşlem başarıyla tamamlandı!")
                         elif onayl==False:
-                            setchannel (isp,False, forceadd)
+                            return await setchannel (isp,False, forceadd)
                         else:
                             log("Hatalı kanal id'si!","red");error=True
                     else: f.write(adds+forceadd);basarili("✅ Force ({}) başarıyla tamamlandı!".format(forceadd))
                 if error:
                     if os.path.isfile(oathh+sep+"channel.txt"): os.remove(oathh+sep+"channel.txt")
-                    return setchannel (isp, False, forceadd)
+                    return await setchannel (isp, False, forceadd)
                 eklenecek=False
                 return oathh+sep+"channel.txt"
 
-def getchannel (isp=0,pprint=True):
+async def getchannel (isp=0,pprint=True):
     import os
     sep = os.sep
     li = os.getcwd().split(sep)
@@ -150,19 +150,19 @@ def getchannel (isp=0,pprint=True):
                     with open(oathh+sep+"main.txt","r") as f:
                         file = f.read()
                     if not file.split('\n')[0].startswith("-100"):
-                        setchannel (isp,False); return getchannel (isp,False)
+                        await setchannel (isp,False); return await getchannel (isp,False)
                     return file.split('\n')[0]
                 else:
-                    setchannel (isp,False); return getchannel (isp,False)
+                    await setchannel (isp,False); return await getchannel (isp,False)
             elif isp == 1:
                 if os.path.isfile(oathh+sep+"channel.txt"):
                     with open(oathh+sep+"channel.txt","r") as f:
                         file = f.read()
                     if not file.split('\n')[0].startswith("-100"):
-                        setchannel (isp,False); return getchannel (isp,False)
+                        await setchannel (isp,False); return await getchannel (isp,False)
                     return file.split('\n')
                 else:
-                    setchannel (isp,False); return getchannel (isp,False)
+                    await setchannel (isp,False); return await getchannel (isp,False)
     return None
 
 async def forchannel(bot,channelpath,message):
@@ -204,8 +204,8 @@ async def main ():
             islem = "4"
         if islem=="1":
             global bot, mainpath, channelpath 
-            mainpath= getchannel (0)
-            channelpath= getchannel (1)
+            mainpath= await getchannel (0)
+            channelpath= await getchannel (1)
             bot = await botagir()
             n()
             log("💨💨 Şimdi botunuz çalışıyor ve ana kanalınızda birşey paylaşmanız bekleniyor...","green")
@@ -216,12 +216,12 @@ async def main ():
                     break
                     raise Exception("Çıkış!")
         elif islem=="2":
-            setchannel ()
+            await setchannel ()
             onayl = onay("Başka bir işlem yapmak ister misiniz?")
             if onayl:logo(False);continue
             else:raise Exception("Çıkış!")
         elif islem=="3":
-            setchannel (1)
+            await setchannel (1)
             onayl = onay("Başka bir işlem yapmak ister misiniz?")
             if onayl:logo(False);continue
             else:raise Exception("Çıkış!")
@@ -251,7 +251,7 @@ eklenecek= False
 @clabtetikleyici(bot=bot,incoming=True,groups_only=False,disable_edited=True,trigger_on_fwd=True)
 async def muutf(m):
     if m.fwd_from and m.views and eklenecek:
-        setchannel (1,False,m.from_id)
+        await setchannel (1,False,m.from_id)
         await m.reply("✅: <i>Başarıyla eklendi:</i> {}".format(m.from_id))
     else:
         await m.reply("✉️: {}".format(str(m)))
