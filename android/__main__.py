@@ -1,6 +1,6 @@
 from telethon.tl.functions.channels import InviteToChannelRequest
 from telethon.tl.functions.messages import AddChatUserRequest
-from telethon.errors import PeerIdInvalidError, LiveError
+from telethon.errors import   PeerIdInvalidError
 from .events import register as clabtetikleyici 
 from telethon.events import NewMessage as bberc
 from telethon.sessions import StringSession
@@ -71,11 +71,11 @@ async def setchannel(isp=0,pprint=True,forceadd=""):
             if sec=="1":
                 await botagir()
 
-                with console.status("[bold thistle1]⌛ @meyusbot'a yan kanaldan bir mesaj iletmeniz bekleniyor, iptal için Ctrl C yapın!") as status:
-                    try:
-                        await bot.run_until_disconnected()
-                    except KeyboardInterrupt:
-                        raise KeyboardInterrupt("Çıkış!")
+                console.status("[bold thistle1]⌛ @meyusbot'a yan kanaldan bir mesaj iletmeniz bekleniyor, iptal için Ctrl C yapın!")
+                try:
+                    await bot.run_until_disconnected()
+                except KeyboardInterrupt:
+                    raise KeyboardInterrupt("Çıkış!")
                 return
             elif sec=="2":break
             else:noadded("Yanlızca 1 veya 2 yazabilirsin!"); continue 
@@ -231,11 +231,11 @@ async def main ():
             await setchannel (1)
             onayl = onay("Başka bir işlem yapmak ister misiniz?")
             if onayl:logo(False);continue
-            else:raise Exception("Çıkış!")
-        elif islem=="4":
+            else:islem="4"
+        if islem=="4":
             await disconn(bot)
             hata("Güle güle!")
-        else:
+        if islem not in ["1","2","3","4"]:
             hata("Hatalı işlem seçimi!")
 
 @clabtetikleyici(bot=bot,incoming=True, pattern="^.start",disable_edited=True)
