@@ -195,7 +195,7 @@ async def main ():
         try:
             islem = soru_("Yapacağınız işlemi seçin [1-4]?")
         except:
-            await disconn (None)
+            await disconn ()
         if islem=="1":
             global bot, mainpath, channelpath 
             mainpath= await getchannel (0)
@@ -217,9 +217,9 @@ async def main ():
             await setchannel (1)
             onayl = onay("Başka bir işlem yapmak ister misiniz?")
             if onayl:logo(False);continue
-            else: await disconn (bot)
+            else: await disconn ()
         elif islem=="4":
-            await disconn(bot)
+            await disconn()
             hata("Güle güle!")
         if islem not in ["1","2","3","4"]:
             hata("Hatalı işlem seçimi!")
@@ -253,8 +253,7 @@ async def muutf(m):
 async def handler(event):
     await event.reply("b "+ event.text)
 """
-async def disconn(bot):
-    if bot==None:global bot
+async def disconn():
     try:
         await bot.disconnect()
         log("Bottan çıkış yapıldı!","red")
@@ -266,7 +265,7 @@ if __name__ == "__main__":
         loop.run_until_complete(main())
     except KeyboardInterrupt:
         n()
-        loop.run_until_complete(disconn(bot))
+        loop.run_until_complete(disconn())
         hata("Güle güle!")
 
 
