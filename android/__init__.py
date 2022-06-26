@@ -11,10 +11,10 @@ def nn():
     console.print("\n\n")
 def hata (text):
     nn()
-    console.print(f'[bold red]{text}[/]') 
+    console.print(f'[bold red]❌ {text}[/]') 
     sys.exit()
 def pip_(module):
-    onemli(f"installing {module} for cerceynlab")
+    onemli(f"📥 installing {module} for cerceynlab")
     pip_cmd = ["pip", "install", f"{module}"]
     process = Popen(pip_cmd, stdout=PIPE, stderr=PIPE)
     stdout, stderr = process.communicate()
@@ -39,7 +39,7 @@ def internet(host="8.8.8.8", port=53, timeout=3):
             return False                        
 def bilgi (text):
     nn()
-    console.print(f'[blue]{text}[/]')
+    console.print(f'[blue]ℹ️ {text}[/]')
 def clabtoken(text,coz=True):
     data = [1, 2, 3, 4, 5]
     ktext=None
@@ -91,24 +91,24 @@ def clabtoken(text,coz=True):
     return None, None, None
 def passed (text):
     nn()
-    console.print(f'[yellow]{text}[/]') 
+    console.print(f'[yellow]🚸 {text}[/]') 
 def noadded (text):
     nn()
-    console.print(f'[red]{text}[/]')  
+    console.print(f'[red]❎ {text}[/]')  
 def basarili (text):
     nn()
-    console.print(f'[bold green] {text}[/]')                         
+    console.print(f'[bold green]✅ {text}[/]')                         
 def onemli (text):
     nn()
-    console.print(f'[bold cyan]{text}[/]')      
+    console.print(f'[bold cyan]❗ {text}[/]')      
 def ads (text,time=5):
     nn()
-    console.print(f'[green]{text}[/]')     
+    console.print(f'[green]🍔 {text}[/]')     
     antripp(time)              
 def soru (soru):
     nn()
-    console.print(f'[bold thistle1]{soru}[/]')                         
-    return console.input(f"[bold yellow]>> [/]")
+    console.print(f'[bold thistle1]❔ {soru}[/]')                         
+    return console.input(f"[bold yellow1]>> [/]")
 def onay (text):
     while True:
         cevap=soru(text)
