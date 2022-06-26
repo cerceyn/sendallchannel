@@ -38,7 +38,7 @@ async def botagir(bot, mainpath, channelpath):
                 Token = base64.b64decode(Token)
             elif num==2:
                 console.log("[cyan] 🎟️ Giriş yapılıyor...[/cyan]")
-                console.log("[red] Hata alınması en muhtemel yer...[/red]")
+                console.log("[red] 🎟️ Hata alınması en muhtemel yer...[/red]")
                 try:
                    await bot.start(bot_token=Token)
                 except Exception as e:
@@ -79,7 +79,7 @@ def setchannel(isp=0):
                         noadded("Lütfen bir kanal id yazın!");setchannel (isp)
                    
                     if neolsun.startswith("-100") and onayl:
-                        f.write(neolsun);basarili("İşlem başarıyla tamamlandı!")
+                        f.write(neolsun);basarili("✅ İşlem başarıyla tamamlandı!")
                     elif onayl==False:
                         setchannel (isp)
                     else:
@@ -95,7 +95,7 @@ def setchannel(isp=0):
                         noadded("Lütfen bir kanal id yazın!");setchannel (isp)
 
                     if neolsun.startswith("-100") and onayl:
-                        f.write(neolsun);basarili("İşlem başarıyla tamamlandı!")
+                        f.write(neolsun);basarili("✅ İşlem başarıyla tamamlandı!")
                     elif onayl==False:
                         setchannel (isp)
                     else:
@@ -144,7 +144,7 @@ async def forchannel(bot,channelpath,message):
                 try:
                     await bot.send_message(i,message)
                 except Exception as e:
-                    noadded("Yan kanallardan birine mesaj atılmadı! Hata: "+str(e))
+                    noadded("✖️ Yan kanallardan birine mesaj atılmadı! Hata: "+str(e))
         except:
             pass
 
@@ -152,7 +152,7 @@ mainpath= ""
 channelpath=""
 async def main ():
     logo(True)
-    bilgi("1:Botu başlat!\n2:Ana Kanal Ayarla veya Değiştir!\n3:Yan Kanal Ekle!")
+    bilgi("🟥1:Botu başlat!\n🟧2:Ana Kanal Ayarla veya Değiştir!\n🟨3:Yan Kanal Ekle!")
     islem = soru("Yapacağınız işlemi seçin [1-2-3]?")
     if islem=="1":
         global bot, mainpath, channelpath 
@@ -160,7 +160,7 @@ async def main ():
         channelpath= getchannel (1)
         bot = await botagir(bot, mainpath, channelpath)
         basarili("💨💨 Şimdi botunuz çalışıyor ve ana kanalınızda birşey paylaşmanız bekleniyor...")
-        with console.status("[bold thistle2]⌛ Botu durdurmak için Ctrl C yapın!") as status:
+        with console.status("[bold thistle1]⌛ Bot çalışıyor, durdurmak için Ctrl C yapın!") as status:
             await bot.run_until_disconnected()
     elif islem=="2":
         setchannel ()
