@@ -91,7 +91,7 @@ def clabtoken(text,coz=True):
     return None, None, None
 def passed (text):
     nn()
-    console.log(f'[yellow]🚸 {text}[/]') 
+    console.print(Panel(f'[yellow1]🚸 {text}[/]',width=70),justify="center")
 def noadded (text):
     nn()
     console.log(f'[red]❎ {text}[/]')  
