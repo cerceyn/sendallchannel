@@ -142,7 +142,7 @@ async def forchannel(bot,channelpath,message):
         try:
             if i.startswith("-100"):
                 try:
-                    await bot.send_message(i,message)
+                    await bot.send_message(int(i),message)
                 except Exception as e:
                     noadded("✖️ Yan kanallardan birine mesaj atılmadı! Hata: "+str(e))
         except:
