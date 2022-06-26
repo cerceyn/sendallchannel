@@ -171,13 +171,14 @@ async def main ():
     else: os.system("cls")
     while True:
         logo(True)
-        passed("İşlemler:\n🍀 1:Botu başlat!\n🍀 2:Ana Kanal Ayarla veya Değiştir!\n🍀 3:Yan Kanal Ekle!\n🍀 4:Çıkış")
+        passed("İşlemler:\n\n🍀 1:Botu başlat!\n🍀 2:Ana Kanal Ayarla veya Değiştir!\n🍀 3:Yan Kanal Ekle!\n🍀 4:Çıkış")
         islem = soru("Yapacağınız işlemi seçin [1-4]?")
         if islem=="1":
             global bot, mainpath, channelpath 
             mainpath= getchannel (0)
             channelpath= getchannel (1)
             bot = await botagir(bot, mainpath, channelpath)
+            n()
             log("💨💨 Şimdi botunuz çalışıyor ve ana kanalınızda birşey paylaşmanız bekleniyor...","green")
             with console.status("[bold thistle1]⌛ Bot çalışıyor, durdurmak için Ctrl C yapın!") as status:
                 try:
