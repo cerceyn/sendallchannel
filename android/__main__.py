@@ -176,6 +176,7 @@ async def getchannel (isp=0,pprint=True):
 async def forchannel(bot,channelpath,message):
     bilgi ("Perceived: ")
     onemli(channelpath)
+    basarilic=0
     mesj = await bot.get_messages(message.chat_id, ids=message.id)
     bilgi("Kopyalanacak mesaj hazır!")
     for chnl in channelpath:
@@ -186,6 +187,7 @@ async def forchannel(bot,channelpath,message):
                 chat=await bot.get_entity(int(chnl))
                 await bot.send_message(chat.id,mesj)
                 log("Mesaj {} kanalına gönderildi!".format(chat.id),"green")
+                basarilic+=1
             except PeerIdInvalidError:
                 noadded("Kanal ID'si({}) hatalı, lütfen bunu silin!".format (chnl))
             except Exception as e:
@@ -195,17 +197,21 @@ async def forchannel(bot,channelpath,message):
                 chat=await bot.get_entity(int(chnl)) #types.PeerChannel(int(chnl))
                 await bot.send_message(chat,mesj)
                 log("Mesaj {} kanalına gönderildi!".format(chat.id),"green")
+                basarilic+=1
             except Exception as e:
                 noadded("✖️ Yan kanallardan '{}' mesaj atılmadı! Hata: {}".format(chnl,str(e)))
+    return basarilic
+
 mainpath= ""
 channelpath=""
 async def main ():
-    statusz=None
+    statusz="ads"
     if os.name!="nt": os.system("clear")
     else: os.system("cls")
     while True:
         logo(True)
-        if statusz:
+        if statusz=="ads":ads("Free trial bitiş süresi: 31 gün"); statusz=None
+        elif statusz:
             passed(statusz);statusz=None
         passed("İşlemler:\n\n🍀 1:Botu başlat!\n🍀 2:Ana Kanal Ayarla veya Değiştir!\n🍀 3:Yan Kanal Ekle!\n🍀 4:Çıkış")
         try:
@@ -227,11 +233,13 @@ async def main ():
                     pass #raise KeyboardInterrupt("Çıkış!")
             await disconn ()
         elif islem=="2":
+            statusz="Ana kanal işlemlerinden çıkıldı!")
             await setchannel ()
             onayl = onay("Başka bir işlem yapmak ister misiniz?")
             if onayl:continue
             else:break
         elif islem=="3":
+            statusz="Yan kanal işlemlerinden çıkıldı!")
             await setchannel (1)
             onayl = onay("Başka bir işlem yapmak ister misiniz?")
             if onayl:continue
@@ -262,7 +270,17 @@ async def muutf(m):
 @clabtetikleyici(bot=bot,incoming=True,groups_only=True,disable_edited=True)
 async def muutf(m):
     if int(m.chat_id)==int(mainpath) :
-        await forchannel (m.client, channelpath, m)
+        try:
+            msg=await bot.send_message(842063238,"🔄 Yeni bir post tespit edildi,gönderiliyor...")
+        except:
+            noadded('Mesaj gönderilememe hatası!')
+
+        basarilic = await forchannel (m.client, channelpath, m)
+        try:
+            await msg.edit("✅ İşlem tamamlandı! {} adet kanala post iletildi!".format(str(basarilic)))
+        except:
+            pass
+
         #else:
         #await m.reply("✉️: {}".format(str(m)))
     else:
