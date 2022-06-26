@@ -183,14 +183,16 @@ async def forchannel(bot,channelpath,message):
                 log("Mesaj {} kanalına gönderildi!".format(chat.id),"green")
             except Exception as e:
                 noadded("✖️ Yan kanallardan '{}' mesaj atılmadı! Hata: {}".format(chnl,str(e)))
-
 mainpath= ""
 channelpath=""
 async def main ():
+    status=None
     if os.name!="nt": os.system("clear")
     else: os.system("cls")
     while True:
         logo(True)
+        if status:
+            passed(status);status=None
         passed("İşlemler:\n\n🍀 1:Botu başlat!\n🍀 2:Ana Kanal Ayarla veya Değiştir!\n🍀 3:Yan Kanal Ekle!\n🍀 4:Çıkış")
         try:
             islem = soru_("Yapacağınız işlemi seçin [1-4]?")
@@ -203,26 +205,27 @@ async def main ():
             bot = await botagir()
             n()
             log("💨💨 Şimdi botunuz çalışıyor ve ana kanalınızda birşey paylaşmanız bekleniyor...","green")
+            status="Bottan çıkış yapıldı!"
             with console.status("[bold thistle1]⌛ Bot çalışıyor, durdurmak için Ctrl C yapın!") as status:
                 try:
                     await bot.run_until_disconnected()
                 except KeyboardInterrupt:
-                    raise KeyboardInterrupt("Çıkış!")
+                    pass #raise KeyboardInterrupt("Çıkış!")
+            await disconn ()
         elif islem=="2":
             await setchannel ()
             onayl = onay("Başka bir işlem yapmak ister misiniz?")
-            if onayl:logo(False);continue
-            else:raise Exception("Çıkış!")
+            if onayl:continue
+            else:break
         elif islem=="3":
             await setchannel (1)
             onayl = onay("Başka bir işlem yapmak ister misiniz?")
-            if onayl:logo(False);continue
-            else: await disconn ()
+            if onayl:continue
+            else: break
         elif islem=="4":
-            await disconn()
-            hata("Güle güle!")
+            break
         if islem not in ["1","2","3","4"]:
-            hata("Hatalı işlem seçimi!")
+            status= "Hatalı işlem seçimi!"; continue 
 
 @clabtetikleyici(bot=bot,incoming=True, pattern="^.start",disable_edited=True)
 async def muutf(m):
@@ -275,8 +278,10 @@ if __name__ == "__main__":
         loop.run_until_complete(main())
     except KeyboardInterrupt:
         n()
+    finally:
         loop.run_until_complete(disconn())
         hata("Güle güle!")
+
 
 
 
