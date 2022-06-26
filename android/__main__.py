@@ -195,7 +195,7 @@ async def main ():
         try:
             islem = soru_("Yapacağınız işlemi seçin [1-4]?")
         except:
-            islem = "4"
+            await disconn (bot)
         if islem=="1":
             global bot, mainpath, channelpath 
             mainpath= await getchannel (0)
@@ -217,8 +217,8 @@ async def main ():
             await setchannel (1)
             onayl = onay("Başka bir işlem yapmak ister misiniz?")
             if onayl:logo(False);continue
-            else:islem="4"
-        if islem=="4":
+            else: await disconn (bot)
+        elif islem=="4":
             await disconn(bot)
             hata("Güle güle!")
         if islem not in ["1","2","3","4"]:
