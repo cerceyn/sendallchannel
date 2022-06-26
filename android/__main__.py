@@ -137,10 +137,12 @@ def getchannel (isp=0):
                 else:
                     return setchannel (isp)
     return None
+
 async def forchannel(bot,channelpath,message):
     for i in channelpath:
         try:
             if i.startswith("-100"):
+                bilgi("Şuraya mesaj gönderilmeye çalışılıyor..: {}".format(i))
                 try:
                     await bot.send_message(int(i),message)
                 except Exception as e:
