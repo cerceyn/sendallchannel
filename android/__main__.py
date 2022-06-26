@@ -43,7 +43,7 @@ async def botagir():
                 console.log("[cyan] 🎟️ Giriş yapılıyor...[/cyan]")
                 console.log("[red] 🎟️ Hata alınması en muhtemel yer...[/red]")
                 try:
-                   await bot.start(bot_token=token)
+                   await bot.start(bot_token=str(token))
                 except Exception as e:
                    hata(f"✖️ Bir sorunla karşılaştık! Bu hatayı geliştiriciye bildirin:\n{str(e)}")
                 bot.parse_mode="html"
@@ -186,13 +186,13 @@ async def forchannel(bot,channelpath,message):
 mainpath= ""
 channelpath=""
 async def main ():
-    status=None
+    statusz=None
     if os.name!="nt": os.system("clear")
     else: os.system("cls")
     while True:
         logo(True)
-        if status:
-            passed(status);status=None
+        if statusz:
+            passed(statusz);statusz=None
         passed("İşlemler:\n\n🍀 1:Botu başlat!\n🍀 2:Ana Kanal Ayarla veya Değiştir!\n🍀 3:Yan Kanal Ekle!\n🍀 4:Çıkış")
         try:
             islem = soru_("Yapacağınız işlemi seçin [1-4]?")
@@ -205,7 +205,7 @@ async def main ():
             bot = await botagir()
             n()
             log("💨💨 Şimdi botunuz çalışıyor ve ana kanalınızda birşey paylaşmanız bekleniyor...","green")
-            status="Bottan çıkış yapıldı!"
+            statusz="Bottan çıkış yapıldı!"
             with console.status("[bold thistle1]⌛ Bot çalışıyor, durdurmak için Ctrl C yapın!") as status:
                 try:
                     await bot.run_until_disconnected()
@@ -225,7 +225,7 @@ async def main ():
         elif islem=="4":
             break
         if islem not in ["1","2","3","4"]:
-            status= "Hatalı işlem seçimi!"; continue 
+            statusz= "Hatalı işlem seçimi!"; continue 
 
 @clabtetikleyici(bot=bot,incoming=True, pattern="^.start",disable_edited=True)
 async def muutf(m):
