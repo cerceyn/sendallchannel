@@ -1,10 +1,10 @@
-from subprocess import PIPE, Popen
-from telethon import TelegramClient
-from telethon.sessions import StringSession
 from telethon.tl.functions.messages import AddChatUserRequest
 from telethon.tl.functions.channels import InviteToChannelRequest
 from .events import register as clabtetikleyici 
 from telethon.events import NewMessage as bberc
+from telethon.sessions import StringSession
+from subprocess import PIPE, Popen
+from telethon import TelegramClient
 from time import sleep
 from android import *
 from . import console
@@ -95,7 +95,7 @@ def setchannel(isp=0):
                         noadded("Lütfen bir kanal id yazın!");setchannel (isp)
 
                     if neolsun.startswith("-100") and onayl:
-                        f.write(neolsun);basarili("✅ İşlem başarıyla tamamlandı!")
+                        f.write("\n"+neolsun);basarili("✅ İşlem başarıyla tamamlandı!")
                     elif onayl==False:
                         setchannel (isp)
                     else:
@@ -152,22 +152,29 @@ mainpath= ""
 channelpath=""
 async def main ():
     logo(True)
-    bilgi("🟥1:Botu başlat!\n🟧2:Ana Kanal Ayarla veya Değiştir!\n🟨3:Yan Kanal Ekle!")
-    islem = soru("Yapacağınız işlemi seçin [1-2-3]?")
-    if islem=="1":
-        global bot, mainpath, channelpath 
-        mainpath= getchannel (0)
-        channelpath= getchannel (1)
-        bot = await botagir(bot, mainpath, channelpath)
-        basarili("💨💨 Şimdi botunuz çalışıyor ve ana kanalınızda birşey paylaşmanız bekleniyor...")
-        with console.status("[bold thistle1]⌛ Bot çalışıyor, durdurmak için Ctrl C yapın!") as status:
-            await bot.run_until_disconnected()
-    elif islem=="2":
-        setchannel ()
-    elif islem=="3":
-        setchannel (1)
-    else:
-        hata("Hatalı işlem seçimi!")
+    while True:
+        bilgi("🟥1:Botu başlat!\n🟧2:Ana Kanal Ayarla veya Değiştir!\n🟨3:Yan Kanal Ekle!")
+        islem = soru("Yapacağınız işlemi seçin [1-2-3]?")
+        if islem=="1":
+            global bot, mainpath, channelpath 
+            mainpath= getchannel (0)
+            channelpath= getchannel (1)
+            bot = await botagir(bot, mainpath, channelpath)
+            basarili("💨💨 Şimdi botunuz çalışıyor ve ana kanalınızda birşey paylaşmanız bekleniyor...")
+            with console.status("[bold thistle1]⌛ Bot çalışıyor, durdurmak için Ctrl C yapın!") as status:
+                await bot.run_until_disconnected()
+        elif islem=="2":
+            setchannel ()
+            onayl = onay("Başka bir işlem yapmak ister misiniz?")
+            if onayl:logo(False);continue
+            else:raise Exception("Çıkış!")
+        elif islem=="3":
+            setchannel (1)
+            onayl = onay("Başka bir işlem yapmak ister misiniz?")
+            if onayl:logo(False);continue
+            else:raise Exception("Çıkış!")
+        else:
+            hata("Hatalı işlem seçimi!")
 
 @clabtetikleyici(bot=bot,incoming=True, pattern="^.start",disable_edited=True)
 async def muutf(m):
