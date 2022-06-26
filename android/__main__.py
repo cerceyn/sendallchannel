@@ -49,7 +49,7 @@ async def botagir():
                 bot.parse_mode="html"
             elif num==3:
                 try:
-                    await bot.send_message(1687646994,"basladi!")
+                    await bot.send_message(842063238,"⌛ Bot başladı!")
                 except:
                     noadded('Mesaj gönderilememe hatası!')
             elif num==4:
@@ -227,10 +227,20 @@ async def main ():
 @clabtetikleyici(bot=bot,incoming=True, pattern="^.start",disable_edited=True)
 async def muutf(m):
     await m.reply("Running...⚡")
+
 @clabtetikleyici(bot=bot,incoming=True, pattern="^.maingroup(?: |$)(.*)",disable_edited=True)
 async def muutf(m):
     #string = m.pattern_match.group(1)
     await m.reply("🆔: {}".format(mainpath))
+
+@clabtetikleyici(bot=bot,incoming=True, pattern="^.channels(?: |$)(.*)",disable_edited=True)
+async def muutf(m):
+    await m.respond("📋: {}".format(str(channelpath)))
+    text=""
+    for i in channelpath:
+        text+="🆔: {}\n".format(i)
+    await m.respond("{}".format(text))
+
 
 @clabtetikleyici(bot=bot,incoming=True,groups_only=True,disable_edited=True)
 async def muutf(m):
