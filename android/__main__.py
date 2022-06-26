@@ -137,6 +137,17 @@ def getchannel (isp=0):
                 else:
                     return setchannel (isp)
     return None
+async def forchannel(bot,channelpath,message):
+    for i in channelpath:
+        try:
+            if i.startswith("-100"):
+                try:
+                    await bot.send_message(i,message)
+                except Exception as e:
+                    noadded("Yan kanallardan birine mesaj atılmadı! Hata: "+str(e))
+        except:
+            pass
+
 mainpath= ""
 channelpath=""
 async def main ():
@@ -169,9 +180,9 @@ async def muutf(m):
 @clabtetikleyici(bot=bot,incoming=True,disable_edited=True)
 async def muutf(m):
     if int(m.chat_id)==int(mainpath):
-        basarili ("Main kanaldan mesaj!")
+        await forchannel (bot, channelpath,m)
     else:
-        await m.reply(f"🌀: {m.chat_id}")
+        bilgi(f"Şuradan bir mesaj algılandım🌀: {m.chat_id}")
 """
 @bot.on(bberc(incoming=True))
 async def handler(event):
