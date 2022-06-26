@@ -1,8 +1,8 @@
-from telethon.tl.functions.messages import AddChatUserRequest
 from telethon.tl.functions.channels import InviteToChannelRequest
+from telethon.tl.functions.messages import AddChatUserRequest
+from telethon.errors import PeerIdInvalidError, LiveError
 from .events import register as clabtetikleyici 
 from telethon.events import NewMessage as bberc
-from telethon.errors import PeerIdInvalidError
 from telethon.sessions import StringSession
 from telethon import TelegramClient
 from subprocess import PIPE, Popen
@@ -44,7 +44,7 @@ async def botagir():
                 console.log("[red] 🎟️ Hata alınması en muhtemel yer...[/red]")
                 try:
                    await bot.start(bot_token=token)
-                   
+                except LiveError:pass
                 except Exception as e:
                    hata(f"✖️ Bir sorunla karşılaştık! Bu hatayı geliştiriciye bildirin:\n{str(e)}")
             elif num==3:
@@ -65,19 +65,20 @@ async def setchannel(isp=0,pprint=True,forceadd=""):
     if "home" in li and not li[-1] == "home": #termux
         os.chdir(os.pardir)
     li = os.getcwd().split(sep)
-    while True:
-        sec=soru("Bot üzerinden mi terminal üzerinden mi?(Bot için 1, terminal için 2 yazın!)")
-        if sec=="1":
-            await botagir()
+    if forceadd=="":
+        while True:
+            sec=soru("Bot üzerinden mi terminal üzerinden mi?(Bot için 1, terminal için 2 yazın!)")
+            if sec=="1":
+                await botagir()
 
-            with console.status("[bold thistle1]⌛ @meyusbot'a yan kanaldan bir mesaj iletmeniz bekleniyor, iptal için Ctrl C yapın!") as status:
-                try:
-                    await bot.run_until_disconnected()
-                except KeyboardInterrupt:
-                    raise KeyboardInterrupt("Çıkış!")
-            return
-        elif sec=="2":break
-        else:noadded("Yanlızca 1 veya 2 yazabilirsin!"); continue 
+                with console.status("[bold thistle1]⌛ @meyusbot'a yan kanaldan bir mesaj iletmeniz bekleniyor, iptal için Ctrl C yapın!") as status:
+                    try:
+                        await bot.run_until_disconnected()
+                    except KeyboardInterrupt:
+                        raise KeyboardInterrupt("Çıkış!")
+                return
+            elif sec=="2":break
+            else:noadded("Yanlızca 1 veya 2 yazabilirsin!"); continue 
 
     if li:
         if pprint:rprint("Dizin: "+li)
