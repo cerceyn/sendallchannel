@@ -127,7 +127,7 @@ def onay (text):
         else:
             noadded("Lütfen sadece evet-yes veya hayır-no diyin!")
 def logo (satirbırak=False):
-    text = "█▀▀ █▀▀ █▀█ █▀▀ █▀▀ █▄█ █▄░█\n\n█▄▄ ██▄ █▀▄ █▄▄ ██▄ ░█░ █░▀█\n█░░ ▄▀█ █▄▄\n█▄▄ █▀█ █▄█"
+    text = "█▀▀ █▀▀ █▀█ █▀▀ █▀▀ █▄█ █▄░█\n█▄▄ ██▄ █▀▄ █▄▄ ██▄ ░█░ █░▀█\n\n█░░ ▄▀█ █▄▄\n█▄▄ █▀█ █▄█"
     if satirbırak:
         for i in range(25):
             console.print("\n")
