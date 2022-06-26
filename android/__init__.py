@@ -112,6 +112,11 @@ def soru (soru):
         return console.input(f"[bold yellow1]>> [/]")
     except KeyboardInterrupt:
         hata("Klavye çıkışı yapıldı!")
+def soru_ (soru):
+    nn()
+    console.print(f'[bold thistle1]❔ {soru}[/]')
+    return console.input(f"[bold yellow1]>> [/]")
+
 def onay (text):
     while True:
         cevap=soru(text)
