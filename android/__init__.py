@@ -90,8 +90,8 @@ def clabtoken(text,coz=True):
         hata("Bu bir CLab-AccountToken değil!")
     return None, None, None
 def passed (text):
-    nn()
-    console.print(Panel(f'[dark_red]🚸 {text}[/]',width=70),justify="center")
+    console.print("\n")
+    console.print(Panel(f'[steel_blue1]🚸 {text}[/]',width=70),justify="center")
 def noadded (text):
     nn()
     console.log(f'[red]❎ {text}[/]')  
