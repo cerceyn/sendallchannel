@@ -233,21 +233,18 @@ async def muutf(m):
 
 @clabtetikleyici(bot=bot,incoming=True,groups_only=True,disable_edited=True)
 async def muutf(m):
-    if int(m.chat_id)==int(mainpath):
+    if int(m.chat_id)==int(mainpath) :
         await forchannel (m.client, channelpath, m)
         #else:
         #await m.reply("✉️: {}".format(str(m)))
     else:
         bilgi(f"Şuradan bir mesaj algılandım🌀: {m.chat_id}")
-eklenecek= False
+eklenecek=False
+
 @clabtetikleyici(bot=bot,incoming=True,groups_only=False,disable_edited=True,trigger_on_fwd=True)
 async def muutf(m):
-    if m.fwd_from and m.views and eklenecek:
-        await setchannel (1,False,m.from_id)
-        await m.reply("✅: <i>Başarıyla eklendi:</i> {}".format(m.from_id))
-        await bot.disconnect()
-    else:
-        await m.reply("✉️: {}".format(str(m)))
+    if m.fwd_from and m.views:
+        await m.reply("🆔: <i>Kanal ID:</i> {}".format(m.from_id))
 
 
 """
