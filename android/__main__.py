@@ -72,22 +72,27 @@ def setchannel(isp=0):
             except FileExistsError:
                 pass
             if isp == 0:
+                error=False
                 with open(oathh+sep+"main.txt","w") as f:
                     neolsun=soru("🍀 Ana kanal ne olsun? Lütfen id'i yazın!")
                     onayl = onay(f"Ana kanal '{neolsun}' olsun mu ?")
                     try:
                         neolsunn = int(neolsun)
                     except ValueError:
-                        noadded("Lütfen bir kanal id yazın!");setchannel (isp)
+                        noadded("Lütfen bir kanal id yazın!");error=True
                    
                     if neolsun.startswith("-100") and onayl:
                         f.write(neolsun);basarili("✅ İşlem başarıyla tamamlandı!")
                     elif onayl==False:
                         setchannel (isp)
                     else:
-                        log("Hatalı kanal id'si!","red");f.write("None")
+                        log("Hatalı kanal id'si!","red");error=True
+                if error:
+                    if os.path.isfile(oathh+sep+"main.txt"): os.remove(oathh+sep+"main.txt")
+                    return setchannel (isp)
                 return oathh+sep+"main.txt"
             elif isp == 1:
+                error=False
                 if os.path.isfile(oathh+sep+"channel.txt"):adds="\n"
                 else:adds=""
                 with open(oathh+sep+"channel.txt","a") as f:
@@ -96,14 +101,17 @@ def setchannel(isp=0):
                     try:
                         neolsunn = int(neolsun)
                     except ValueError:
-                        noadded("Lütfen bir kanal id yazın!");setchannel (isp)
+                        noadded("Lütfen bir kanal id yazın!");error=True
 
                     if neolsun.startswith("-100") and onayl:
                         f.write(adds+neolsun);basarili("✅ İşlem başarıyla tamamlandı!")
                     elif onayl==False:
                         setchannel (isp)
                     else:
-                        log("Hatalı kanal id'si!","red");f.write("None")
+                        log("Hatalı kanal id'si!","red");error=True
+                if error:
+                    if os.path.isfile(oathh+sep+"channel.txt"): os.remove(oathh+sep+"channel.txt")
+                    return setchannel (isp)
                 return oathh+sep+"channel.txt"
 
 def getchannel (isp=0):
