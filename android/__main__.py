@@ -167,8 +167,10 @@ async def forchannel(bot,channelpath,message):
 mainpath= ""
 channelpath=""
 async def main ():
-    logo(True)
+    if os.name!="nt": os.system("clear")
+    else: os.system("cls")
     while True:
+        logo(True)
         onemli("🟥 1:Botu başlat!\n🟧 2:Ana Kanal Ayarla veya Değiştir!\n🟨 3:Yan Kanal Ekle!\n🟫4:Çıkış")
         islem = soru("Yapacağınız işlemi seçin [1-2-3]?")
         if islem=="1":
