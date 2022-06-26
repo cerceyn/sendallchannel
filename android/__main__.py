@@ -42,10 +42,7 @@ async def botagir():
             elif num==2:
                 console.log("[cyan] 🎟️ Giriş yapılıyor...[/cyan]")
                 console.log("[red] 🎟️ Hata alınması en muhtemel yer...[/red]")
-                try:
-                   await bot.start(bot_token=str(token))
-                except Exception as e:
-                   hata(f"✖️ Bir sorunla karşılaştık! Bu hatayı geliştiriciye bildirin:\n{str(e)}")
+                await bot.start(bot_token=token)
                 bot.parse_mode="html"
             elif num==3:
                 try:
