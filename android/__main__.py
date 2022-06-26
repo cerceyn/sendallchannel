@@ -56,7 +56,7 @@ async def botagir():
                 console.log(f'[bold][green]✅ Bot girişi yapıldı!')
                 #await bot.disconnect()
     return bot
-def setchannel(isp=0,pprint=True,forceadd=""):
+async def setchannel(isp=0,pprint=True,forceadd=""):
     global eklenecek; eklenecek=True
     import os
     sep = os.sep
