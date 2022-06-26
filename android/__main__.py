@@ -62,13 +62,19 @@ async def setchannel(isp=0,pprint=True,forceadd=""):
     sep = os.sep
     li = os.getcwd().split(sep)
     if pprint:bilgi(li[-1])
-    if "home" in li and not li[-1] == "home": #termux
-        os.chdir(os.pardir)
+    if "home" in li: #termux
+        while True:
+            if not li[-1] == "home": #termux
+                os.chdir(os.pardir)
+            else:
+                break
+    else:
+        hata("Geçersiz işletim sistemi!")
     li = os.getcwd().split(sep)
 
     if li:
         if pprint:rprint(li)
-        if "home" in li: #termux
+        if li:
             oathh=os.getcwd() + sep + "s-a-c"
             try:
                 os.makedirs(oathh)
@@ -130,10 +136,10 @@ async def getchannel (isp=0,pprint=True):
     if pprint:bilgi(li[-1])
     if "home" in li: #termux
         while True:
-        if not li[-1] == "home": #termux
-            os.chdir(os.pardir)
-        else:
-            break
+            if not li[-1] == "home": #termux
+                os.chdir(os.pardir)
+            else:
+                break
     else:
         hata("Geçersiz işletim sistemi!")
     li = os.getcwd().split(sep)
