@@ -67,7 +67,7 @@ def register(bot,**args):
             if check.via_bot_id and not trigger_on_inline:
                 return
              
-            if groups_only and not check.is_group:
+            if groups_only and check.is_private:
                 if not notifyoff:
                     try:
                         await check.edit("`⛔ Bunun bir grup olduğunu sanmıyorum. Bu plugini bir grupta dene! `")
