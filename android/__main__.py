@@ -29,6 +29,7 @@ async def botagir(bot, mainpath, channelpath):
     global Token
     data = [1,2,3,4]
     u=""
+    n()
     with console.status("[bold blue] Bota girme işlemi sürüyor...") as status:
         while data:
             num = data.pop(0)
@@ -142,20 +143,21 @@ async def forchannel(bot,channelpath,message):
     bilgi ("Perceived: ")
     onemli(channelpath)
 
-    for i in channelpath:
+    for chnl in channelpath:
+        if chnl == "":continue 
         try:
-            if i.startswith("-100"):
-                bilgi("Şuraya mesaj gönderilmeye çalışılıyor..: {}".format(i))
+            if chnl.startswith("-100"):
+                bilgi("Şuraya mesaj gönderilmeye çalışılıyor..: {}".format(chnl))
                 try:
-                    chat=await bot.get_entity(int(i))
+                    chat=await bot.get_entity(int(chnl))
                     await bot.send_message(chat.id,message)
                 except Exception as e:
-                    noadded("✖️ Yan kanallardan birine mesaj atılmadı! Hata: "+str(e))
+                    noadded("✖️ Yan kanallardan '{}' mesaj atılmadı! Hata: {}".format(chnk,str(e)))
             else:
                 try:
-                    await bot.send_message(types.PeerChannel(int(i)),message)
+                    await bot.send_message(types.PeerChannel(int(chnl)),message)
                 except Exception as e:
-                    noadded("✖️ Yan kanallardan birine mesaj atılmadı! Hata: "+str(e))
+                    noadded("✖️ Yan kanallardan '{}' mesaj atılmadı! Hata: {}".format(chnl,str(e)))
         except:
             pass
 
@@ -176,6 +178,7 @@ async def main ():
                 try:
                     await bot.run_until_disconnected()
                 except KeyboardInterrupt:
+                    break
                     raise Exception("Çıkış!")
         elif islem=="2":
             setchannel ()
@@ -201,7 +204,7 @@ async def muutf(m):
 @clabtetikleyici(bot=bot,incoming=True,disable_edited=True)
 async def muutf(m):
     if int(m.chat_id)==int(mainpath):
-        await forchannel (m.client, channelpath,m)
+        await forchannel (m.client, channelpath, m)
     else:
         bilgi(f"Şuradan bir mesaj algılandım🌀: {m.chat_id}")
 """
