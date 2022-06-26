@@ -2,6 +2,7 @@ from telethon.tl.functions.messages import AddChatUserRequest
 from telethon.tl.functions.channels import InviteToChannelRequest
 from .events import register as clabtetikleyici 
 from telethon.events import NewMessage as bberc
+from telethon.errors import PeerIdInvalidError
 from telethon.sessions import StringSession
 from telethon import TelegramClient
 from subprocess import PIPE, Popen
@@ -142,24 +143,26 @@ def getchannel (isp=0):
 async def forchannel(bot,channelpath,message):
     bilgi ("Perceived: ")
     onemli(channelpath)
-
+    mesj = await bot.get_messages(message.chat_id, ids=message.id)
+    bilgi("Kopyalanacak mesaj hazır!")
     for chnl in channelpath:
         if chnl == "":continue 
         if chnl.startswith("-100"):
             bilgi("Şuraya mesaj gönderilmeye çalışılıyor..: {}".format(chnl))
-         #   try:
-            chat=await bot.get_entity(int(chnl))
-            mesj = await bot.get_messages(message.chat_id, ids=message.id)
-            await bot.send_message(chat.id,mesj)
-            log("Mesaj {} kanalına gönderildi!".format(chat.id),"green")
-               # except Exception as e:
-          #    noadded("✖️ Yan kanallardan '{}' mesaj atılmadı! Hata: {}".format(chnk,str(e)))
+            try:
+                chat=await bot.get_entity(int(chnl))
+                await bot.send_message(chat.id,mesj)
+                log("Mesaj {} kanalına gönderildi!".format(chat.id),"green")
+            except PeerIdInvalidError:
+                noadded("Kanal ID'si hatalı, lütfen bunu silin!")
+            except Exception as e:
+                noadded("✖️ Yan kanallardan '{}' mesaj atılmadı! Hata: {}".format(chnk,str(e)))
         else:
-            #try:
-            await bot.send_message(types.PeerChannel(int(chnl)),str(message))
-            log("Mesaj {} kanalına gönderildi!".format(chat.id),"green")
-            #except Exception as e:
-            #        noadded("✖️ Yan kanallardan '{}' mesaj atılmadı! Hata: {}".format(chnl,str(e)))
+            try:
+                await bot.send_message(types.PeerChannel(int(chnl)),mesj)
+                log("Mesaj {} kanalına gönderildi!".format(chat.id),"green")
+            except Exception as e:
+                noadded("✖️ Yan kanallardan '{}' mesaj atılmadı! Hata: {}".format(chnl,str(e)))
 
 mainpath= ""
 channelpath=""
