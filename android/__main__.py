@@ -3,11 +3,11 @@ from telethon.tl.functions.channels import InviteToChannelRequest
 from .events import register as clabtetikleyici 
 from telethon.events import NewMessage as bberc
 from telethon.sessions import StringSession
-from subprocess import PIPE, Popen
 from telethon import TelegramClient
+from subprocess import PIPE, Popen
+from telethon import types
 from time import sleep
 from android import *
-from . import console
 import asyncio
 import base64
 
@@ -139,12 +139,19 @@ def getchannel (isp=0):
     return None
 
 async def forchannel(bot,channelpath,message):
+    bilgi ("Perceived: "+channelpath)
     for i in channelpath:
         try:
             if i.startswith("-100"):
                 bilgi("Şuraya mesaj gönderilmeye çalışılıyor..: {}".format(i))
                 try:
-                    await bot.send_message(int(i),message)
+                    chat=await bot.get_entity(int(i))
+                    await bot.send_message(chat.id,message)
+                except Exception as e:
+                    noadded("✖️ Yan kanallardan birine mesaj atılmadı! Hata: "+str(e))
+            else:
+                try:
+                    await bot.send_message(types.PeerChannel(int(i)),message)
                 except Exception as e:
                     noadded("✖️ Yan kanallardan birine mesaj atılmadı! Hata: "+str(e))
         except:
@@ -189,7 +196,7 @@ async def muutf(m):
 @clabtetikleyici(bot=bot,incoming=True,disable_edited=True)
 async def muutf(m):
     if int(m.chat_id)==int(mainpath):
-        await forchannel (bot, channelpath,m)
+        await forchannel (m.client, channelpath,m)
     else:
         bilgi(f"Şuradan bir mesaj algılandım🌀: {m.chat_id}")
 """
