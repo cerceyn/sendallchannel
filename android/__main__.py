@@ -67,7 +67,7 @@ async def setchannel(isp=0,pprint=True,forceadd=""):
     li = os.getcwd().split(sep)
     while True:
         sec=soru("Bot üzerinden mi terminal üzerinden mi?(Bot için 1, terminal için 2 yazın!)")
-        if sec=="1": asyncio.run(await botagir()); return
+        if sec=="1": await botagir(); return
         elif sec=="2":break
         else:noadded("Yanlızca 1 veya 2 yazabilirsin!"); continue 
                 
