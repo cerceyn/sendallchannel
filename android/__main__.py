@@ -106,8 +106,10 @@ async def setchannel(isp=0,pprint=True,forceadd=""):
                 error=False
                 if os.path.isfile(oathh+sep+"channel.txt"):adds="\n"
                 else:adds=""
-                with open(oathh+sep+"channel.txt","r") as f:
-                    channelsss=f.read().split('\n')
+                try:
+                    with open(oathh+sep+"channel.txt","r") as f:
+                        channelsss=f.read().split('\n')
+                except FileNotFoundError: channelsss=[]
                 with open(oathh+sep+"channel.txt","a") as f:
                     if forceadd == "":
                         neolsun=soru("🍀 Eklenecek yan kanal ne olsun? Lütfen id'i yazın!")
