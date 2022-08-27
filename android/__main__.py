@@ -22,7 +22,7 @@ def log(text,renk=None):
         console.log(f"[{renk}]{text}[/{renk}]")
     else:
         console.log(f"{text}")
-Token="MTc4Mzc1MjY5ODpBQUhfVktvOWp6STV4bHVpT1dDV3lmTWdfUlRQc0dUbzZkbw=="
+Token="MTc4Mzc1MjY5ODpBQUdVZDhlS1FQU3FEQVNpUmxHTW54S3p6UWhDOTJZaDJEZw=="
 try:
     bot = TelegramClient('bots',api_id=13312418, api_hash="78d4836b623e06dece52033114bdb21e")
 except Exception as e:
