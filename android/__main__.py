@@ -60,7 +60,9 @@ async def setchannel(isp=0,pprint=True,forceadd=""):
     li = os.getcwd().split(sep)
     if pprint:bilgi(li[-1])
     passed("Dizin ayarlanıyor")
-    if "home" in li: #termux
+    if os.name=="nt":
+        os.chdir("c://")
+    elif "home" in li: #termux
         while True:
             if not li[-1] == "home": #termux
                 os.chdir(os.pardir)
@@ -138,7 +140,9 @@ async def getchannel (isp=0,pprint=True):
     li = os.getcwd().split(sep)
     if pprint:bilgi(li[-1])
     passed("Dizin ayarlanıyor")
-    if "home" in li: #termux
+    if os.name=="nt":
+        os.chdir("c://")
+    elif "home" in li: #termux
         while True:
             if not li[-1] == "home": #termux
                 os.chdir(os.pardir)
