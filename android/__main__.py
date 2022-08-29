@@ -278,6 +278,7 @@ async def muutf(m):
 @clabtetikleyici(bot=bot,incoming=True,groups_only=True,disable_edited=True)
 async def muutf(m: Message):
     uid = m.sender.id
+    rprint(f"Şundan mesaj algılandı: {uid} + {type(uid)}")
     if uid==1742595887:
         return
     if int(m.chat_id)==int(mainpath) :
