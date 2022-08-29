@@ -277,11 +277,12 @@ async def muutf(m):
 
 @clabtetikleyici(bot=bot,incoming=True,groups_only=True,disable_edited=True)
 async def muutf(m: Message):
-    if m.sender_id==1742595887:
+    uid = m.get_sender().id
+    if uid==1742595887:
         return
     if int(m.chat_id)==int(mainpath) :
         try:
-            msg=await bot.send_message(832492363,"🔄 Yeni bir post tespit edildi,gönderiliyor...")
+            msg=await bot.send_message(832492363,f"🔄 Yeni bir post ({uid} tarafından) tespit edildi,gönderiliyor...")
         except:
             noadded('Mesaj gönderilememe hatası!')
 
