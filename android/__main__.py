@@ -279,7 +279,7 @@ async def muutf(m):
 async def muutf(m: Message):
     uid = m.sender.id
     rprint(f"Şundan mesaj algılandı: {uid} + {type(uid)}")
-    if uid==1742595887:
+    if uid==1228102918: #1742595887:
         return
     if int(m.chat_id)==int(mainpath) :
         try:
@@ -289,7 +289,7 @@ async def muutf(m: Message):
 
         basarilic = await forchannel (m.client, channelpath, m)
         try:
-            await msg.edit("✅ İşlem tamamlandı! {} adet kanala post iletildi!".format(str(basarilic)))
+            await msg.edit("<b>✅ İşlem tamamlandı! {} adet kanala post iletildi! uid:{}</b>".format(str(basarilic),uid))
         except:
             pass
 
@@ -298,14 +298,13 @@ async def muutf(m: Message):
     else:
         bilgi(f"Şuradan bir mesaj algılandım🌀: {m.chat_id}")
 eklenecek=False
-
+"""
 @clabtetikleyici(bot=bot,incoming=True,groups_only=False,disable_edited=True,trigger_on_fwd=True)
 async def muutf(m):
     if m.fwd_from and m.views:
         await m.reply("🆔: <i>Kanal ID:</i> {}".format(m.fwd_from.from_id))
 
 
-"""
 @bot.on(bberc(incoming=True))
 async def handler(event):
     await event.reply("b "+ event.text)
