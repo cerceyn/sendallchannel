@@ -277,19 +277,19 @@ async def muutf(m):
 
 @clabtetikleyici(bot=bot,incoming=True,groups_only=True,disable_edited=True)
 async def muutf(m: Message):
-    uid = m.sender.id
-    rprint(f"Şundan mesaj algılandı: {uid} + {type(uid)}")
-    if uid==1228102918: #1742595887:
+    name = m.post_author
+    rprint(f"Şundan mesaj algılandı: {name}")
+    if "Oto Poster" in name: #1742595887:
         return
     if int(m.chat_id)==int(mainpath) :
         try:
-            msg=await bot.send_message(832492363,f"🔄 Yeni bir post ({uid} tarafından) tespit edildi,gönderiliyor...")
+            msg=await bot.send_message(832492363,"🔄 Yeni bir post tespit edildi,gönderiliyor...")
         except:
             noadded('Mesaj gönderilememe hatası!')
 
         basarilic = await forchannel (m.client, channelpath, m)
         try:
-            await msg.edit("<b>✅ İşlem tamamlandı! {} adet kanala post iletildi! uid:{}</b>".format(str(basarilic),uid))
+            await msg.edit("<b>✅ İşlem tamamlandı! {} adet kanala post iletildi! name:{}</b>".format(str(basarilic),name))
         except:
             pass
 
