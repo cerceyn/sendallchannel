@@ -277,11 +277,11 @@ async def muutf(m):
 
 @clabtetikleyici(bot=bot,incoming=True,groups_only=True,disable_edited=True)
 async def muutf(m: Message):
-    name = m.post_author
-    rprint(f"Şundan mesaj algılandı: {name}")
-    if "Oto Poster" in name: #1742595887:
-        return
     if int(m.chat_id)==int(mainpath) :
+        name = m.post_author
+        rprint(f"Şundan mesaj algılandı: {name}")
+        if "Oto Poster" in name: #1742595887:
+            return
         try:
             msg=await bot.send_message(832492363,"🔄 Yeni bir post tespit edildi,gönderiliyor...")
         except:
